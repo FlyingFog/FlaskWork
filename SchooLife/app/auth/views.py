@@ -1,8 +1,9 @@
-from flask import  render_template, redirect, url_for, request, flash
+from flask import render_template, redirect, url_for, request, flash
 from . import auth
 from .. import db
 from app.auth.forms import LoginForm, SignupForm
-from ..models import User,Share,Question
+from ..models import User, Share, Question
+
 
 @auth.route('/', methods=['GET', 'POST'])
 def login():
@@ -13,7 +14,7 @@ def login():
         user = User.query.filter_by(name=login_form.name.data).first()
         if user:
             if password == user.password:
-                return redirect(url_for('auth.index', uid=user.uid))
+                return redirect(url_for('main.index', uid=user.uid))
             else:
                 flash("密码错误")
         else:
@@ -21,7 +22,7 @@ def login():
     else:
         if request.method == "POST":
             flash("密码不正确")
-    return render_template('login.html', form=login_form)
+    return render_template('auth/login.html', form=login_form)
 
 
 @auth.route('/signup', methods=['GET', 'POST'])
@@ -39,7 +40,7 @@ def signup():
                 db.session.add(new_user)
                 db.session.commit()
                 flash("注册成功")
-                return redirect(url_for('auth.index', uid=new_user.uid))
+                return redirect(url_for('main.index', uid=new_user.uid))
             except Exception as e:
                 print(e)
                 flash("注册失败")
@@ -47,42 +48,6 @@ def signup():
     else:
         if request.method == "POST":
             flash("两次输入密码不一致")
-    return render_template('signup.html', form=signup_form)
+    return render_template('auth/signup.html', form=signup_form)
 
 
-@auth.route('/index/<uid>', methods=['GET', 'POST'])
-def index(uid):
-    user = User.query.get(uid)
-    return render_template('index.html', user=user)
-
-
-@auth.route('/index/delete_share/<uid>/<sid>', methods=['GET', 'POST'])
-def delete_share(uid, sid):
-    share = Share.query.get(sid)
-    if share:
-        try:
-            db.session.delete(share)
-            db.session.commit()
-        except Exception as e:
-            print(e)
-            flash('删除分享出错')
-            db.session.rollback()
-    else:
-        flash('没有这条分享')
-    return redirect(url_for('auth.index', uid=uid))
-
-
-@auth.route('/index/delete_question/<uid>/<qid>', methods=['GET', 'POST'])
-def delete_question(uid, qid):
-    question = Question.query.get(qid)
-    if question:
-        try:
-            db.session.delete(question)
-            db.session.commit()
-        except Exception as e:
-            print(e)
-            flash('删除问题出错')
-            db.session.rollback()
-    else:
-        flash('没有这条问题')
-    return redirect(url_for('auth.index', uid=uid))
