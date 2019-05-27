@@ -7,6 +7,14 @@
 <body>
 <h1>name:{{ user.name }}</h1><br>
 
+<h3>头像：</h3>
+
+{% if user.has_img %}
+<img src="/static/{{user.uid}}.jpg"  alt="" />
+{% else %}
+<img src="/static/default.jpg"  alt="" />
+{% endif %}
+
 {% for message in get_flashed_messages() %}
 {{message}}<br>
 {%endfor%}

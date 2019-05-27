@@ -16,20 +16,21 @@ class Follow(db.Model):
 class User(db.Model):
     __tablename__ = 'users'
     uid = db.Column(db.INT, primary_key=True)
-    email = db.Column(db.VARCHAR(256))
-    password = db.Column(db.VARCHAR(256))
-    name = db.Column(db.VARCHAR(256))
-    realname = db.Column(db.VARCHAR(256))
-    portrait = db.Column(db.VARCHAR(256))
+    email = db.Column(db.VARCHAR(255))
+    password = db.Column(db.VARCHAR(255))
+    name = db.Column(db.VARCHAR(255))
+    realname = db.Column(db.VARCHAR(255))
+    portrait = db.Column(db.VARCHAR(255))
     permit = db.Column(db.INT, default=1)
     gender = db.Column(db.INT)
     age = db.Column(db.INT)
-    school = db.Column(db.VARCHAR(256))
-    selfinfo = db.Column(db.TEXT(65536))
+    school = db.Column(db.VARCHAR(255))
+    selfinfo = db.Column(db.TEXT(65535))
     regtime = db.Column(db.DATETIME, default=datetime.utcnow)
     totshare = db.Column(db.INT, default=0)
     totques = db.Column(db.INT, default=0)
     totans = db.Column(db.INT, default=0)
+    has_img = db.Column(db.BOOLEAN, default=0)
 
     shares = db.relationship('Share', backref='writer')
     questions = db.relationship('Question', backref='writer')
@@ -50,9 +51,9 @@ class Share(db.Model):
     __tablename__ = 'share'
     sid = db.Column(db.INT, primary_key=True)
     writeruid = db.Column(db.INT, db.ForeignKey('users.uid'))
-    label = db.Column(db.VARCHAR(256))
-    image = db.Column(db.VARCHAR(256))
-    content = db.Column(db.TEXT(65536))
+    label = db.Column(db.VARCHAR(255))
+    image = db.Column(db.VARCHAR(255))
+    content = db.Column(db.TEXT(65535))
     pubtime = db.Column(db.DATETIME, default=datetime.utcnow)
     newnum = db.Column(db.INT, default=0)
     star = db.Column(db.INT, default=0)
@@ -67,7 +68,7 @@ class Comment(db.Model):
     cid = db.Column(db.INT, primary_key=True)
     sid = db.Column(db.INT, db.ForeignKey('share.sid'))
     writerid = db.Column(db.INT, db.ForeignKey('users.uid'))
-    content = db.Column(db.TEXT(65536))
+    content = db.Column(db.TEXT(65535))
     pubtime = db.Column(db.DATETIME, default=datetime.utcnow)
 
     def to_dict(self):
@@ -79,8 +80,8 @@ class Question(db.Model):
     __tablename__ = 'question'
 
     qid = db.Column(db.INT, primary_key=True)
-    label = db.Column(db.VARCHAR(256))
-    content = db.Column(db.TEXT(65536))
+    label = db.Column(db.VARCHAR(255))
+    content = db.Column(db.TEXT(65535))
     writeruid = db.Column(db.INT, db.ForeignKey('users.uid'))
     newnum = db.Column(db.INT)
 
@@ -93,7 +94,7 @@ class Answer(db.Model):
     __tablename__ = 'answer'
     aid = db.Column(db.INT, primary_key=True)
     qid = db.Column(db.INT, db.ForeignKey('question.qid'))
-    content = db.Column(db.TEXT(65536))
+    content = db.Column(db.TEXT(65535))
     pubtime = db.Column(db.DATETIME, default=datetime.utcnow)
 
 
