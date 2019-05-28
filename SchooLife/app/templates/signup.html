@@ -11,7 +11,8 @@
 <form method="post">
     <!--防csrf攻击，必须加-->
     {{ form.csrf_token() }}
-    {{ form.name.label}}{{form.name}}<br>
+    {{ form.username.label }}{{ form.username }}
+    {{ form.email.label}}{{form.email}}<br>
     {{ form.password.label}}{{form.password}}<br>
     {{ form.password2.label}}{{form.password2}}<br>
 

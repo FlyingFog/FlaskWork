@@ -1,24 +1,28 @@
 from datetime import datetime
 from app import db
+from flask_login import UserMixin
+from werkzeug.security import generate_password_hash,check_password_hash
+from . import login_manager
 
-from config import basedir
+
 
 class Follow(db.Model):
     __tablename__ = 'followinfo'
 
-    followuid = db.Column(db.INT, db.ForeignKey('users.uid'),
+    followuid = db.Column(db.INT, db.ForeignKey('users.id'),
                             primary_key=True)
-    followeruid = db.Column(db.INT, db.ForeignKey('users.uid'),
+    followeruid = db.Column(db.INT, db.ForeignKey('users.id'),
                             primary_key=True)
     followtime = db.Column(db.DATETIME, default=datetime.utcnow)
 
 
-class User(db.Model):
+class User(UserMixin, db.Model):
     __tablename__ = 'users'
-    uid = db.Column(db.INT , primary_key=True)
+    id = db.Column(db.INT, primary_key=True)
     email = db.Column(db.VARCHAR(256))
-    password = db.Column(db.VARCHAR(256))
-    name = db.Column(db.VARCHAR(256))
+    password = db.Column(db.VARCHAR(512))
+    confirm = db.Column(db.BOOLEAN, default=False)
+    username = db.Column(db.VARCHAR(256))
     realname = db.Column(db.VARCHAR(256))
     portrait = db.Column(db.VARCHAR(256))
     permit = db.Column(db.INT, default=1)
@@ -44,13 +48,24 @@ class User(db.Model):
         return {c.name: getattr(self, c.name, None)
                 for c in self.__table__.columns}
 
+    def generate_password(self ,pwd):
+        self.password = generate_password_hash(pwd)
 
+    def verify_password(self ,pwd):
+        return check_password_hash(self.password , pwd)
+
+
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 
 class Share(db.Model):
     __tablename__ = 'share'
     sid = db.Column(db.INT , primary_key=True)
-    writeruid = db.Column(db.INT ,db.ForeignKey('users.uid'))
+    writeruid = db.Column(db.INT ,db.ForeignKey('users.id'))
     label = db.Column(db.VARCHAR(256))
     image = db.Column(db.VARCHAR(256))
     content = db.Column(db.TEXT(65536))
@@ -67,7 +82,7 @@ class Comment(db.Model):
     __tablename__ = 'comment'
     cid = db.Column(db.INT, primary_key=True)
     sid = db.Column(db.INT ,db.ForeignKey('share.sid'))
-    writerid = db.Column(db.INT ,db.ForeignKey('users.uid'))
+    writerid = db.Column(db.INT ,db.ForeignKey('users.id'))
     content = db.Column(db.TEXT(65536))
     pubtime = db.Column(db.DATETIME,default=datetime.utcnow)
 
@@ -82,7 +97,7 @@ class Question(db.Model):
     qid = db.Column(db.INT, primary_key=True)
     label = db.Column(db.VARCHAR(256))
     content = db.Column(db.TEXT(65536))
-    writeruid = db.Column(db.INT,db.ForeignKey('users.uid'))
+    writeruid = db.Column(db.INT,db.ForeignKey('users.id'))
     newnum = db.Column(db.INT)
 
     def to_dict(self):

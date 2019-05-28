@@ -3,12 +3,14 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 
 class Config:
+
     SECRET_KEY = os.environ.get('SECRET_KEY') or "hahaha"
     #db Config
-
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'flask.db')
     #mysql://root:123456@localhost:3306/flask
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+    #login Config
 
     #Mail Config
     """
