@@ -5,20 +5,36 @@
     <title>Index</title>
 </head>
 <body>
+
 <h1>name:{{ user.name }}</h1><br>
 
 <h3>头像：</h3>
-
 {% if user.has_img %}
-<img src="/static/{{user.uid}}.jpg"  alt="" />
+<!--浏览器会有图片缓存，如果没有rand，更改本地图片，前端网页是不会变的-->
+<img src="/static/{{user.uid}}.jpg?rand={{rand}}" alt="头像图片" />
 {% else %}
-<img src="/static/default.jpg"  alt="" />
+<img src="/static/default.jpg" alt="头像图片" />
 {% endif %}
 
 {% for message in get_flashed_messages() %}
 {{message}}<br>
 {%endfor%}
+<hr>
+<form method="post">
+    <!--防csrf攻击，必须加-->
+    {{ share_form.csrf_token() }}
+    {{ share_form.content.label }}{{ share_form.content }}<br>
+    {{ share_form.submit }}<br>
+</form>
 
+<form method="post">
+    <!--防csrf攻击，必须加-->
+    {{ question_form.csrf_token() }}
+    {{ question_form.content.label }}{{ question_form.content }}<br>
+    {{ question_form.submit }}<br>
+</form>
+
+<hr>
 <h2>share:</h2><br>
 {% for share in user.shares%}
     <ul>{{share.label}}<a href="{{ url_for('main.delete_share',uid=user.uid,sid=share.sid)}}">删除</a></ul>

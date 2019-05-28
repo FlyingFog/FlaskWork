@@ -39,9 +39,9 @@ def signup():
             flash('邮箱已被注册')
         else:
             if signup_form.image.data:
-                has_img=1
+                has_img = 1
             else:
-                has_img=0
+                has_img = 0
             new_user = User(name=name, password=password, email=email, has_img=has_img)
             try:
                 db.session.add(new_user)
