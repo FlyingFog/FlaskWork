@@ -35,11 +35,12 @@ class User(db.Model):
     shares = db.relationship('Share', backref='writer')
     questions = db.relationship('Question', backref='writer')
 
+
     """
-    Follower = db.relationship("Follow" , foreign_keys=[Follow.FollewerUID],
+    follower = db.relationship("Follow" , foreign_keys=[Follow.FollewerUID],
                                back_populates="FollewerUID")
-    Following = db.relationship("Follow",foreign_keys=[Follow.FollowedUID],
-                             back_populates="FollowedUID")
+    following = db.relationship("Follow", foreign_keys=[Follow.FollowedUID],
+                                back_populates="FollowedUID")
     """
 
     def to_dict(self):

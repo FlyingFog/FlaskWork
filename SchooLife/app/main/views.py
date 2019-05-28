@@ -31,6 +31,11 @@ def index(uid):
     return render_template('index.html', user=user, share_form=share_form,
                            rand=random.randint(1000, 9999))
 
+@main.route('/index/<uid>/friends', methods=['GET', 'POST'])
+def friends(uid):
+    user = User.query.get(uid)
+    return render_template('friends.html', user=user)
+
 
 @main.route('/index/<uid>/pub_question', methods=['GET', 'POST'])
 def pub_question(uid):

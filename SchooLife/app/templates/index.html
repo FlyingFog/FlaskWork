@@ -16,7 +16,7 @@
 <img src="/static/default.jpg" alt="头像图片" />
 {% endif %}
 
-
+<a href="{{url_for('main.friends',uid=user.uid)}}">查看动态</a>
 <hr>
 <font color="red">发表，修改信息部分</font>
 <form method="post">
