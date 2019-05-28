@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+publish question
+
+<form method="post">
+    <!--防csrf攻击，必须加-->
+    {{ question_form.csrf_token() }}
+    {{ question_form.label.label }}{{ question_form.label }}<br>
+    {{ question_form.content.label }}{{ question_form.content }}<br>
+    {{ question_form.submit }}<br>
+</form>
+
+
+{% for message in get_flashed_messages() %}
+{{message}}<br>
+{%endfor%}
+
+<a href="{{url_for('main.index',uid=user.uid)}}">返回主页</a>
+
+</body>
+</html>
