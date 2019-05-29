@@ -9,12 +9,11 @@ def send_async_email(app, msg):
         mail.send(msg)
 
 
-def send_email(to, subject, template, **kwargs):
+def send_email(to,name):
     app = current_app._get_current_object()
-    msg = Message(app.config['FLASKY_MAIL_SUBJECT_PREFIX'] + ' ' + subject,
+    msg = Message(app.config['FLASKY_MAIL_SUBJECT_PREFIX'] + ' Welcome to SchoolLife',
                   sender=app.config['FLASKY_MAIL_SENDER'], recipients=[to])
-    msg.body = render_template(template + '.txt', **kwargs)
-    msg.html = render_template(template + '.html', **kwargs)
+    msg.html =render_template('auth/email.html',name=name)
     thr = Thread(target=send_async_email, args=[app, msg])
     thr.start()
     return thr

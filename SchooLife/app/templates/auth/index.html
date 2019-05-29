@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+<h1>name:{{ user.name }}</h1><br>
+
+{% for message in get_flashed_messages() %}
+{{message}}<br>
+{%endfor%}
+
+<h2>share:</h2><br>
+{% for share in user.shares%}
+    <ul>{{share.label}}<a href="{{ url_for('delete_share',uid=user.uid,sid=share.sid)}}">删除</a></ul>
+{%endfor%}
+
+<h2>question:</h2><br>
+{% for question in user.questions%}
+    <ul>{{question.label}}<a href="{{ url_for('delete_question',uid=user.uid,qid=question.qid)}}">删除</a></ul>
+{%endfor%}
+
+<a href="{{url_for('auth.login')}}">退出</a>
+
+</body>
+</html>

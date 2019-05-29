@@ -1,4 +1,5 @@
 from flask import  render_template, redirect, url_for, request, flash
+from app.email import send_email
 from . import auth
 from .. import db
 from app.auth.forms import LoginForm, SignupForm
@@ -6,7 +7,7 @@ from ..models import User,Share,Question
 from flask_login import logout_user
 from flask_login import login_required
 from flask_login import login_user
-from flask_login import current_user
+import os
 
 @auth.route('/', methods=['GET', 'POST'])
 def login():
@@ -16,9 +17,9 @@ def login():
         user = User.query.filter_by(email=form.email.data).first()
         if user and user.verify_password(password):
                 login_user(user, form.remember_me.data)
-                return redirect(url_for('auth.index', uid=user.id))
+                return redirect(url_for('main.index'))
         flash("用户名或密码错误")
-    return render_template('login.html', form=form)
+    return render_template('auth/login.html', form=form)
 
 
 @auth.route('/signup', methods=['GET', 'POST'])
@@ -30,11 +31,22 @@ def signup():
         password = form.password.data
         user = User(email=email,username=name)
         user.generate_password(password)
+        if form.image.data:
+            user.has_img = 1
         try:
             db.session.add(user)
             db.session.commit()
+            # 存图片
+            if form.image.data:
+                basedir = os.path.abspath(os.path.dirname(__file__))
+                f = request.files['image']
+                postfix = str(f.filename).split('.')[1]
+                image_name = str(user.id) + '.' + postfix
+                f.save(os.path.join(os.path.join(basedir, '..', 'static'), image_name))
+            # 发邮件
+            #send_email(email, name)
             flash("注册成功")
-            return redirect(url_for('auth.index'))
+            return redirect(url_for('main.index'))
         except Exception as e:
             print(e)
             flash("注册失败")
@@ -42,7 +54,7 @@ def signup():
     else:
         if request.method == "POST":
             flash("两次输入密码不一致")
-    return render_template('signup.html', form=form)
+    return render_template('auth/signup.html', form=form)
 
 
 @auth.route('/logout')
@@ -52,8 +64,9 @@ def logout():
     flash('登出成功')
     return redirect(url_for('auth.login'))
 
-
+"""
 @auth.route('/index')
 @login_required
 def index():
     return "这是current_user: "+str(current_user.id)
+"""

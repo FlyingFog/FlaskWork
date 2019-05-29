@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动态</title>
+</head>
+<body>
+friends动态
+<!--{% for share in user.shares%}-->
+    <!--<ul>{{share.label}}<a href="{{ url_for('main.friends',uid=user.uid)}}">删除</a></ul>-->
+<!--{%endfor%}-->
+
+<a href="{{url_for('main.index',uid=user.uid)}}">返回主页</a>
+</body>
+</html>

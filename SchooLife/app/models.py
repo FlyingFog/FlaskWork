@@ -24,6 +24,7 @@ class User(UserMixin, db.Model):
     confirm = db.Column(db.BOOLEAN, default=False)
     username = db.Column(db.VARCHAR(256))
     realname = db.Column(db.VARCHAR(256))
+    has_img = db.Column(db.INT ,default=0)
     portrait = db.Column(db.VARCHAR(256))
     permit = db.Column(db.INT, default=1)
     gender = db.Column(db.INT)

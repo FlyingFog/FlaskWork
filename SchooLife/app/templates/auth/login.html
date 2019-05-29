@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Log In</title>
+</head>
+<
+>
+
+<h1>log in</h1>
+
+<form method="post">
+    <!--防csrf攻击，必须加-->
+    {{ form.csrf_token() }}
+    {{ form.email.label}}{{form.email}}<br>
+    {{ form.password.label}}{{form.password}}<br>
+    {{ form.submit }}<br>
+    {{ form.remember_me }}<br>
+</form>
+
+<a href="{{url_for('auth.signup')}}">注册</a>
+
+{% for message in get_flashed_messages() %}
+{{message}}<br>
+{%endfor%}
+
+</body>
+</html>

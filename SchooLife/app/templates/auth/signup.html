@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+</head>
+<body>
+
+<h1>sign up</h1>
+
+<form method="post" enctype="multipart/form-data">
+    <!--防csrf攻击，必须加-->
+    {{ form.csrf_token() }}
+    {{ form.email.label}}{{form.email}}<br>
+    {{ form.username.label}}{{form.username}}<br>
+    {{ form.password.label}}{{form.password}}<br>
+    {{ form.password2.label}}{{form.password2}}<br>
+    {{ form.image.label }}{{ form.image }}<br>
+    {{ form.submit }}<br>
+</form>
+
+
+{% for message in get_flashed_messages() %}
+{{message}}<br>
+{%endfor%}
+
+<a href="{{url_for('auth.login')}}">返回</a>
+
+</body>
+</html>

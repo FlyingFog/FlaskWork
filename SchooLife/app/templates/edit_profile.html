@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<form method="post" enctype="multipart/form-data">
+    <!--防csrf攻击，必须加-->
+    {{ form.csrf_token() }}
+    {{ form.image.label }}{{ form.image }}<br>
+    {{ form.email.label}}{{form.email}}<br>
+    {{ form.name.label}}{{form.name}}<br>
+    {{ form.password.label}}{{form.password}}<br>
+    {{ form.password2.label}}{{form.password2}}<br>
+    {{ form.realname.label}}{{form.realname}}<br>
+    {{ form.gender.label}}{{form.gender}}<br>
+    {{ form.age.label}}{{form.age}}<br>
+    {{ form.school.label}}{{form.school}}<br>
+    {{ form.selfinfo.label}}{{form.selfinfo}}<br>
+
+    {{ form.submit }}<br>
+</form>
+
+
+{% for message in get_flashed_messages() %}
+{{message}}<br>
+{%endfor%}
+<a href="{{url_for('main.index',uid=user.uid)}}">返回主页</a>
+</body>
+</html>
