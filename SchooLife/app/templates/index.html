@@ -11,7 +11,7 @@
 <h3>头像：</h3>
 {% if user.has_img %}
 <!--浏览器会有图片缓存，如果没有rand，更改本地图片，前端网页是不会变的-->
-<img src="/static/{{user.uid}}.jpg?rand={{rand}}" alt="头像图片" />
+<img src="/static/{{user.id}}.jpg?rand={{rand}}" alt="头像图片" />
 {% else %}
 <img src="/static/default.jpg" alt="头像图片" />
 {% endif %}

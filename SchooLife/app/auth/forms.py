@@ -11,7 +11,7 @@ class LoginForm(FlaskForm):
 
 
 class SignupForm(FlaskForm):
-    email = StringField('email',validators=[DataRequired(),])
+    email = StringField('email',validators=[DataRequired()])
     username = StringField('name:', validators=[DataRequired()])
     password = PasswordField('password:', validators=[DataRequired()])
     password2 = PasswordField('confirm password:', validators=[DataRequired(), EqualTo('password', "密码不一样")])

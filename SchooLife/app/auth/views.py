@@ -14,9 +14,10 @@ def confirm(token):
         return redirect(url_for('main.index'))
     if current_user.confirm(token):
         flash('You have confirmed your account. Thanks!')
+        return redirect(url_for('main.index'))
     else:
         flash('The confirmation link is invalid or has expired.')
-    return redirect(url_for('main.index'))
+        return redirect('auth.unconfirmed')
 
 #重新发送邮件
 @auth.route('/confirm')
@@ -51,10 +52,11 @@ def login():
 def signup():
     form = SignupForm()
     if form.validate_on_submit():
+        print(1)
         email = form.email.data
         name = form.username.data
         password = form.password.data
-        user = User(email=email,username=name)
+        user = User(email=email, username=name)
         user.generate_password(password)
         if form.image.data:
             user.has_img = 1
@@ -69,9 +71,9 @@ def signup():
                 image_name = str(user.id) + '.' + postfix
                 f.save(os.path.join(os.path.join(basedir, '..', 'static'), image_name))
             # 发邮件
-            #send_email(email, name)
+            send_email(user.email, user=user, token=user.generate_confirmation_token())
             flash("注册成功")
-            return redirect(url_for('main.index'))
+            return redirect(url_for('auth.login'))
         except Exception as e:
             print(e)
             flash("注册失败")

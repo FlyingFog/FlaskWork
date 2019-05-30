@@ -13,7 +13,6 @@ def send_email(to,**kwargs):
     app = current_app._get_current_object()
     msg = Message(app.config['FLASKY_MAIL_SUBJECT_PREFIX'] + ' Welcome to SchoolLife',
                   sender=app.config['FLASKY_MAIL_SENDER'], recipients=[to])
-    msg.body = render_template('auth/confirm.txt' ,**kwargs)
     msg.html =render_template('auth/email.html',**kwargs)
     thr = Thread(target=send_async_email, args=[app, msg])
     thr.start()
