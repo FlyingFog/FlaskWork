@@ -16,6 +16,9 @@
                     <p style="font-family: 'Segoe UI';font-size: 20px">{{ form.password.label }}</p>
                     <p style="font-family: 'Segoe UI'">{{ form.password() }}</p><br>
                     <p style="font-family: 'Segoe UI'">{{ form.submit() }}</p><br>
+                    {% for message in get_flashed_messages() %}
+                    {{message}}<br>
+                    {%endfor%}
                 </form>
                 <p class="small" style="font-family: 'Segoe UI';font-size: 12px"><a href="{{ url_for('auth.signup') }}">Register new account</a>
                 </p>

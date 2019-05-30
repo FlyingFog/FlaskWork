@@ -11,4 +11,11 @@
         Need another confirmation email?
         <a href="{{ url_for('auth.resend_confirmation') }}">Click here</a>
     </p>
+    <p>
+    </p>>
+    <p>
+        {% for message in get_flashed_messages() %}
+            {{message}}<br>
+        {%endfor%}
+    </p>
 </div>

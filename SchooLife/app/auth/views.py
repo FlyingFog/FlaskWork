@@ -13,8 +13,8 @@ def confirm(token):
     if current_user.confirmed:
         return redirect(url_for('main.index'))
     if current_user.confirm(token):
-        flash('You have confirmed your account. Thanks!')
-        return redirect(url_for('main.index'))
+        flash('You have confirmed your account.Please log in.Thanks!')
+        return redirect(url_for('auth.login'))
     else:
         flash('The confirmation link is invalid or has expired.')
         return redirect('auth.unconfirmed')
@@ -26,7 +26,7 @@ def resend_confirmation():
     token = current_user.generate_confirmation_token()
     send_email(current_user.email, user=current_user, token=token)
     flash('A new confirmation email has been sent to you by email.')
-    return redirect(url_for('main.index'))
+    return render_template('auth/unconfirmed.html')
 
 #未认证
 @auth.route('/unconfirmed')
@@ -71,7 +71,7 @@ def signup():
                 image_name = str(user.id) + '.' + postfix
                 f.save(os.path.join(os.path.join(basedir, '..', 'static'), image_name))
             # 发邮件
-            send_email(user.email, user=user, token=user.generate_confirmation_token())
+            #send_email(user.email, user=user, token=user.generate_confirmation_token())
             flash("注册成功")
             return redirect(url_for('auth.login'))
         except Exception as e:
