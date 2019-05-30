@@ -10,10 +10,8 @@
                     SchoolLife!</strong></p></div>
                 <form method='post'>
                     {{ form.csrf_token() }}
-                    <p style="font-family: 'Segoe UI';font-size: 20px">{{ form.email.label }}</p>
-                    <p style="font-family: 'Segoe UI'">{{ form.email() }}</p><br>
-                    <p style="font-family: 'Segoe UI';font-size: 20px">{{ form.username.label }}</p>
-                    <p style="font-family: 'Segoe UI'">{{ form.username() }}</p><br>
+                    <p style="font-family: 'Segoe UI';font-size: 20px">{{ form.name.label }}</p>
+                    <p style="font-family: 'Segoe UI'">{{ form.name() }}</p><br>
                     <p style="font-family: 'Segoe UI';font-size: 20px">{{ form.password.label }}</p>
                     <p style="font-family: 'Segoe UI'">{{ form.password() }}</p><br>
                     <p style="font-family: 'Segoe UI';font-size: 20px">{{ form.password2.label }}</p>

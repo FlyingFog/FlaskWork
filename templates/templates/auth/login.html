@@ -6,20 +6,19 @@
                 <img src="{{ url_for('static', filename='images/4.jpg') }}" class="img-rounded">
             </div>
             <div class="col-xs-4">
-                <div class="form-header"><p style="font-family: 'Segoe UI';word-spacing: 10px;font-size: 32px"><strong>Welcome to
+                <div class="form-header"><p style="word-spacing: 10px;font-family: 'Segoe UI';font-size:32px"><strong>Log in to
                     SchoolLife!</strong></p></div>
+                <br>
                 <form method='post'>
                     {{ form.csrf_token() }}
-                    <p style="font-family: 'Segoe UI';font-size: 20px">{{ form.email.label }}</p>
-                    <p style="font-family: 'Segoe UI'">{{ form.email() }}</p><br>
-                    <p style="font-family: 'Segoe UI';font-size: 20px">{{ form.username.label }}</p>
-                    <p style="font-family: 'Segoe UI'">{{ form.username() }}</p><br>
+                    <p style="font-family: 'Segoe UI';font-size: 20px">{{ form.name.label }}</p>
+                    <p style="font-family: 'Segoe UI'">{{ form.name() }}</p><br>
                     <p style="font-family: 'Segoe UI';font-size: 20px">{{ form.password.label }}</p>
                     <p style="font-family: 'Segoe UI'">{{ form.password() }}</p><br>
-                    <p style="font-family: 'Segoe UI';font-size: 20px">{{ form.password2.label }}</p>
-                    <p style="font-family: 'Segoe UI'">{{ form.password2() }}</p><br>
                     <p style="font-family: 'Segoe UI'">{{ form.submit() }}</p><br>
                 </form>
+                <p class="small" style="font-family: 'Segoe UI';font-size: 12px"><a href="#">Register new account</a>
+                </p>
             </div>
         </div>
     </div>

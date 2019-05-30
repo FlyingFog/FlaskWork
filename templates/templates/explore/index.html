@@ -1,0 +1,17 @@
+{% from 'macros.html' import share_card %}
+
+{% include 'explore/_header.html' %}
+<div class="row" style="margin-left: -130px">
+    {% if shares %}
+        {% for share in shares %}
+            <div class="col-md-2" style="margin-left:180px;margin-top: 28px">
+                {{ share_card(share) }}
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="tip text-center">
+            <h3 style="font-family: 'Segoe UI'">No photos.</h3>
+        </div>
+    {% endif %}
+</div>
+
