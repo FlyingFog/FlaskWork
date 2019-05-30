@@ -1,8 +1,3 @@
-{% extends "base.html" %}
-
-{% block title %}Flasky - Confirm your account{% endblock %}
-
-{% block page_content %}
 <div class="page-header">
     <h1>
         Hello, {{ current_user.username }}!
@@ -17,4 +12,3 @@
         <a href="{{ url_for('auth.resend_confirmation') }}">Click here</a>
     </p>
 </div>
-{% endblock %}

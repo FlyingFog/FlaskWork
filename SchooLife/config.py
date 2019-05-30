@@ -14,7 +14,7 @@ class Config:
 
     #Mail Config
     #Mail Config
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'hard to guess string'
+    SECRET_KEY ='hardtoguessstring'
     MAIL_SERVER = os.environ.get('MAIL_SERVER', 'smtp.qq.com')
     MAIL_PORT = int(os.environ.get('MAIL_PORT', '25'))
     MAIL_USE_TLS = os.environ.get('MAIL_USE_TLS', 'true').lower() in \

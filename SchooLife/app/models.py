@@ -1,10 +1,13 @@
+#coding=utf-8
+
 from datetime import datetime
+from . import app
 from app import db
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash,check_password_hash
 from . import login_manager
-
-
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
+from urllib import parse
 
 class Follow(db.Model):
     __tablename__ = 'followinfo'
@@ -21,7 +24,7 @@ class User(UserMixin, db.Model):
     id = db.Column(db.INT, primary_key=True)
     email = db.Column(db.VARCHAR(256))
     password = db.Column(db.VARCHAR(512))
-    confirm = db.Column(db.BOOLEAN, default=False)
+    confirmed = db.Column(db.BOOLEAN, default=False)
     username = db.Column(db.VARCHAR(256))
     realname = db.Column(db.VARCHAR(256))
     has_img = db.Column(db.INT ,default=0)
@@ -55,8 +58,27 @@ class User(UserMixin, db.Model):
     def verify_password(self ,pwd):
         return check_password_hash(self.password , pwd)
 
+    def generate_confirmation_token(self):
+        s = Serializer(app.config['SECRET_KEY'], expires_in=3600)
+        token = s.dumps({'uid':self.id})
+        print(token)
+        return token
 
-
+    def confirm(self, token):
+        s = Serializer(app.config['SECRET_KEY'], expires_in=3600)
+        token = token[2:-1]
+        print(token)
+        try:
+            data = s.loads(token)
+        except:
+            print('datafalse')
+            return False
+        if data.get('uid') != self.id:
+            return False
+        self.confirmed = True
+        db.session.add(self)
+        db.session.commit()
+        return True
 
 @login_manager.user_loader
 def load_user(user_id):

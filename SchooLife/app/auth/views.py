@@ -4,10 +4,35 @@ from . import auth
 from .. import db
 from app.auth.forms import LoginForm, SignupForm
 from ..models import User,Share,Question
-from flask_login import logout_user
-from flask_login import login_required
-from flask_login import login_user
+from flask_login import logout_user,login_required,login_user,current_user
 import os
+
+@auth.route('/confirm/<token>')
+@login_required
+def confirm(token):
+    if current_user.confirmed:
+        return redirect(url_for('main.index'))
+    if current_user.confirm(token):
+        flash('You have confirmed your account. Thanks!')
+    else:
+        flash('The confirmation link is invalid or has expired.')
+    return redirect(url_for('main.index'))
+
+#重新发送邮件
+@auth.route('/confirm')
+@login_required
+def resend_confirmation():
+    token = current_user.generate_confirmation_token()
+    send_email(current_user.email, user=current_user, token=token)
+    flash('A new confirmation email has been sent to you by email.')
+    return redirect(url_for('main.index'))
+
+#未认证
+@auth.route('/unconfirmed')
+def unconfirmed():
+    if current_user.confirmed:
+        return redirect(url_for('main.index'))
+    return render_template('auth/unconfirmed.html')
 
 @auth.route('/', methods=['GET', 'POST'])
 def login():
@@ -16,8 +41,8 @@ def login():
         password = request.form.get('password')
         user = User.query.filter_by(email=form.email.data).first()
         if user and user.verify_password(password):
-                login_user(user, form.remember_me.data)
-                return redirect(url_for('main.index'))
+            login_user(user, form.remember_me.data)
+            return redirect(url_for('auth.unconfirmed'))
         flash("用户名或密码错误")
     return render_template('auth/login.html', form=form)
 
