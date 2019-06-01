@@ -23,4 +23,9 @@
             </div>
         </div>
     </div>
+
+{% for message in get_flashed_messages() %}
+{{message}}<br>
+{%endfor%}
+
 {% endblock %}

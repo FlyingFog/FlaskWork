@@ -1,11 +1,12 @@
-from flask import  render_template, redirect, url_for, request, flash
+from flask import render_template, redirect, url_for, request, flash
 from app.email import send_email
 from . import auth
 from .. import db
 from app.auth.forms import LoginForm, SignupForm
-from ..models import User,Share,Question
-from flask_login import logout_user,login_required,login_user,current_user
+from ..models import User, Share, Question
+from flask_login import logout_user, login_required, login_user, current_user
 import os
+
 
 @auth.route('/confirm/<token>')
 @login_required
@@ -19,7 +20,8 @@ def confirm(token):
         flash('The confirmation link is invalid or has expired.')
         return redirect('auth.unconfirmed')
 
-#重新发送邮件
+
+# 重新发送邮件
 @auth.route('/confirm')
 @login_required
 def resend_confirmation():
@@ -28,12 +30,14 @@ def resend_confirmation():
     flash('A new confirmation email has been sent to you by email.')
     return render_template('auth/unconfirmed.html')
 
-#未认证
+
+# 未认证
 @auth.route('/unconfirmed')
 def unconfirmed():
     if current_user.confirmed:
         return redirect(url_for('main.index'))
     return render_template('auth/unconfirmed.html')
+
 
 @auth.route('/', methods=['GET', 'POST'])
 def login():
@@ -71,7 +75,7 @@ def signup():
                 image_name = str(user.id) + '.' + postfix
                 f.save(os.path.join(os.path.join(basedir, '..', 'static'), image_name))
             # 发邮件
-            #send_email(user.email, user=user, token=user.generate_confirmation_token())
+            # send_email(user.email, user=user, token=user.generate_confirmation_token())
             flash("注册成功")
             return redirect(url_for('auth.login'))
         except Exception as e:
@@ -80,7 +84,7 @@ def signup():
             db.session.rollback()
     else:
         if request.method == "POST":
-            flash("两次输入密码不一致")
+            flash("注册失败")
     return render_template('auth/signup.html', form=form)
 
 
@@ -90,6 +94,7 @@ def logout():
     logout_user()
     flash('登出成功')
     return redirect(url_for('auth.login'))
+
 
 """
 @auth.route('/index')

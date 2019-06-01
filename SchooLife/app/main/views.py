@@ -29,7 +29,7 @@ def index():
             print(e)
             flash("发布失败")
             db.session.rollback()
-    return render_template('index.html', user=user, share_form=share_form,
+    return render_template('user/index.html', user=user, share_form=share_form,
                            rand=random.randint(1000, 9999))
 
 @main.route('/index/friends', methods=['GET', 'POST'])

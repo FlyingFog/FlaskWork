@@ -1,0 +1,21 @@
+{% from 'macros.html' import user_card %}
+{% block content %}
+    {% include 'user/_header.html' %}
+    <div class="user-nav" style="margin-left: 80px;margin-top: 30px;margin-right: 80px">
+        <ul class="nav nav-tabs" style="font-family: 'Segoe UI'">
+            <li role="presentation"><a href="#">Shares</a></li><!--改成显示分享页（index）的函数-->
+            <li role="presentation"><a href="#">Q&As</a></li><!--改成显示问题页的函数-->
+            <li role="presentation" class="active"><a href="#">Following</a></li><!--改成显示关注的人的函数-->
+            <li role="presentation"><a href="#">Follower</a></li><!--改成显示关注者的函数-->
+        </ul>
+    </div>
+    <div class="row" style="margin-top: 10px;margin-left:15px">
+        {% if followings %}
+            {% for following in followings %}
+                <div class="col-md-3" style="margin-top: 40px; margin-left: -10px">
+                    {{ user_card(following) }}
+                </div>
+            {% endfor %}
+            </div>
+        {% endif %}
+{% endblock %}
