@@ -46,7 +46,6 @@ def load_user(user_id):
 
 
 @auth.route('/', methods=['GET', 'POST'])
-@login_required
 def login():
     form = LoginForm()
     if form.validate_on_submit():
@@ -54,9 +53,10 @@ def login():
         user = User.query.filter_by(email=form.email.data).first()
         if user and user.verify_password(password):
             login_user(user, form.remember_me.data)
-            # flash('登录成功')
-            # login_user(user)
-            return redirect(url_for('auth.unconfirmed'))
+            if current_user.confirmed:
+                return redirect(url_for('main.index'))
+            return render_template('auth/unconfirmed.html')
+            # return redirect(url_for('auth.unconfirmed'))
         flash("用户名或密码错误")
     return render_template('auth/login.html', form=form)
 
@@ -65,7 +65,6 @@ def login():
 def signup():
     form = SignupForm()
     if form.validate_on_submit():
-        print(1)
         email = form.email.data
         name = form.username.data
         password = form.password.data

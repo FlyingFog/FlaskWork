@@ -3,10 +3,16 @@ from . import main
 from .. import db
 from ..models import User, Share, Question
 import random
+from app import login_manager
 from app.main.forms import ShareForm, QuestionForm, ProfileForm
 from ..email import send_email
 
 from flask_login import login_required, current_user
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 
 @main.route('/index', methods=['GET', 'POST'])
@@ -33,8 +39,8 @@ def index():
             db.session.rollback()
     return render_template('user/index.html',
                            user=user,
-                           share_form=share_form,
-                           rand=random.randint(1000, 9999))
+                           share_form=share_form,)
+                           # rand=random.randint(1000, 9999))
 
 
 @main.route('/index/friends', methods=['GET', 'POST'])
@@ -42,9 +48,6 @@ def index():
 def friends():
     user = current_user
     return render_template('friends.html', user=user)
-
-
-
 
 
 
@@ -73,6 +76,7 @@ def pub_question():
 
 
 @main.route('/index/edit_profile', methods=['GET', 'POST'])
+@login_required
 def edit_profile():
     user = current_user
     profile_form = ProfileForm()
