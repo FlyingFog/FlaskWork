@@ -3,13 +3,16 @@ from . import main
 from .. import db
 from ..models import User, Share, Question
 import random
-from app.main.forms import ShareForm, QuestionForm,ProfileForm
+from app.main.forms import ShareForm, QuestionForm, ProfileForm
 from ..email import send_email
 
+from flask_login import login_required, current_user
 
-@main.route('/index/<uid>', methods=['GET', 'POST'])
-def index(uid):
-    user = User.query.get(uid)
+
+@main.route('/index', methods=['GET', 'POST'])
+@login_required
+def index():
+    user = current_user
     share_form = ShareForm()
     if request.method == "POST":
         s_label = request.form.get('label')
@@ -28,18 +31,21 @@ def index(uid):
             print(e)
             flash("发布失败")
             db.session.rollback()
-    return render_template('index.html', user=user, share_form=share_form,
+    return render_template('user/index.html', user=user, share_form=share_form,
                            rand=random.randint(1000, 9999))
 
-@main.route('/index/<uid>/friends', methods=['GET', 'POST'])
-def friends(uid):
-    user = User.query.get(uid)
+
+@main.route('/index/friends', methods=['GET', 'POST'])
+@login_required
+def friends():
+    user = current_user
     return render_template('friends.html', user=user)
 
 
-@main.route('/index/<uid>/pub_question', methods=['GET', 'POST'])
-def pub_question(uid):
-    user = User.query.get(uid)
+@main.route('/index/pub_question', methods=['GET', 'POST'])
+@login_required
+def pub_question():
+    user = current_user
     question_form = QuestionForm()
     if request.method == "POST":
         q_label = request.form.get('label')
@@ -60,10 +66,10 @@ def pub_question(uid):
     return render_template('pub_question.html', user=user, question_form=question_form)
 
 
-@main.route('/index/<uid>/edit_profile', methods=['GET', 'POST'])
-def edit_profile(uid):
-    user = User.query.get(uid)
-    profile_form=ProfileForm()
+@main.route('/index/edit_profile', methods=['GET', 'POST'])
+def edit_profile():
+    user = current_user
+    profile_form = ProfileForm()
     if profile_form.validate_on_submit():
         email = request.form.get('email')
         name = request.form.get('name')
@@ -80,21 +86,21 @@ def edit_profile(uid):
             # 丑陋的代码
             send_email(email, name)
             if email:
-                user.email=profile_form.email.data
+                user.email = profile_form.email.data
             if name:
-                user.name=profile_form.name.data
+                user.name = profile_form.name.data
             if password:
-                user.password=profile_form.password.data
+                user.password = profile_form.password.data
             if realname:
-                user.realname=profile_form.realname.data
+                user.realname = profile_form.realname.data
             if gender:
-                user.gender=profile_form.gender.data
+                user.gender = profile_form.gender.data
             if age:
-                user.age=profile_form.age.data
+                user.age = profile_form.age.data
             if school:
-                user.school=profile_form.school.data
+                user.school = profile_form.school.data
             if selfinfo:
-                user.selfinfo=profile_form.selfinfo.data
+                user.selfinfo = profile_form.selfinfo.data
             try:
                 db.session.commit()
                 flash("修改成功")
@@ -105,7 +111,7 @@ def edit_profile(uid):
     else:
         if request.method == "POST":
             flash("两次输入密码不一致 或 填写不合法")
-    return render_template('edit_profile.html',user=user,form=profile_form)
+    return render_template('edit_profile.html', user=user, form=profile_form)
 
 
 @main.route('/index/delete_share/<uid>/<sid>', methods=['GET', 'POST'])

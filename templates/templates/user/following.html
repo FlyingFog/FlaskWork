@@ -1,0 +1,13 @@
+{% from 'macros.html' import user_card %}
+{% block content %}
+    {% include 'user/_header.html' %}
+    <div class="row" style="margin-top: 10px;margin-left:15px">
+        {% if followings %}
+            {% for following in followings %}
+                <div class="col-md-2" style="margin-top: 40px; margin-left: -10px">
+                    {{ user_card(following) }}
+                </div>
+            {% endfor %}
+            </div>
+        {% endif %}
+{% endblock %}

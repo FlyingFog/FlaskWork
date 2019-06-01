@@ -3,15 +3,20 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 
 class Config:
+
     SECRET_KEY = os.environ.get('SECRET_KEY') or "hahaha"
     #db Config
 
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'flask.db') + '?check_same_thread=False'
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'flask.db') +"?check_same_thread=False"
     #mysql://root:123456@localhost:3306/flask
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
+    #login Config
+
     #Mail Config
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'hard to guess string'
+
+    #Mail Config
+    SECRET_KEY ='hardtoguessstring'
     MAIL_SERVER = os.environ.get('MAIL_SERVER', 'smtp.qq.com')
     MAIL_PORT = int(os.environ.get('MAIL_PORT', '25'))
     MAIL_USE_TLS = os.environ.get('MAIL_USE_TLS', 'true').lower() in \

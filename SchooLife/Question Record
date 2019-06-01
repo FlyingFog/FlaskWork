@@ -4,6 +4,7 @@
 **
 template 中 重定向或路由url 应该与所用路由（蓝图）一致
 
+<<<<<<< HEAD
 **
 TODO:
     edit profile内:
@@ -11,3 +12,14 @@ TODO:
         2.图片上传问题
         bugs:
         1.ProfileForm都没有设置validators=[DataRequired()]，但是edit profile必须全部把信息填完才能提交
+=======
+
+**
+db models修改
+uid -> id
+name -> username
++has_pic
+
+**
+change <id> -> current user
+>>>>>>> Hsc

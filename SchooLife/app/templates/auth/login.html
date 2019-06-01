@@ -1,26 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Log In</title>
-</head>
-<body>
-
-<h1>log in</h1>
-
-<form method="post">
-    <!--防csrf攻击，必须加-->
-    {{ form.csrf_token() }}
-    {{ form.name.label}}{{form.name}}<br>
-    {{ form.password.label}}{{form.password}}<br>
-    {{ form.submit }}<br>
-</form>
-
-<a href="{{url_for('auth.signup')}}">注册</a>
-
-{% for message in get_flashed_messages() %}
-{{message}}<br>
-{%endfor%}
-
-</body>
-</html>
+{% extends 'auth/base.html' %}
+{% block body_part %}
+    <div class="well well-lg" style="height: 500px; margin-top: 20px;margin-left: 70px;margin-right: 60px;">
+        <div class="row" style="margin-top: 35px">
+            <div class="col-xs-7" style="margin-left: 35px">
+                <img src="{{ url_for('static', filename='images/4.jpg') }}" class="img-rounded">
+            </div>
+            <div class="col-xs-4">
+                <div class="form-header"><p style="word-spacing: 10px;font-family: 'Segoe UI';font-size:32px"><strong>Log in to
+                    SchoolLife!</strong></p></div>
+                <br>
+                <form method='post'>
+                    {{ form.csrf_token() }}
+                    <p style="font-family: 'Segoe UI';font-size: 20px">{{ form.email.label }}</p>
+                    <p style="font-family: 'Segoe UI'">{{ form.email() }}</p><br>
+                    <p style="font-family: 'Segoe UI';font-size: 20px">{{ form.password.label }}</p>
+                    <p style="font-family: 'Segoe UI'">{{ form.password() }}</p><br>
+                    <p style="font-family: 'Segoe UI'">{{ form.submit() }}</p><br>
+                </form>
+                <p class="small" style="font-family: 'Segoe UI';font-size: 12px"><a href="{{url_for('auth.signup')}}">Register new account</a>
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

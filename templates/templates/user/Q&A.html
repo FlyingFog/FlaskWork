@@ -1,0 +1,17 @@
+{% from 'macros.html' import question_card %}
+{% block content %}
+    {% include 'user/_header.html' %}
+    <div class="row" style="margin-top: 20px">
+        {% if questions %}
+            {% for question in questions %}
+                <div class="col-md-8 col-md-offset-2" style="margin-top: 30px">
+                    {{ question_card(question) }}
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="tip text-center">
+                <h3 style="font-family: 'Segoe UI'">No Q&A.</h3>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
