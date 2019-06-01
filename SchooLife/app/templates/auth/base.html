@@ -31,10 +31,10 @@
 
         <div class="collapse navbar-collapse" id="navbar-collapse-1" style="margin-top: 10px;font-family: 'Segoe UI'">
             <ul class="nav navbar-nav" style="font-size: 20px">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Explore</a></li>
-                <li><a href="#">Share</a></li>
-                <li><a href="#">Q&A</a></li>
+                <li><a href="{{url_for('main.index')}}">Home</a></li>
+                <li><a href="{{url_for('main.explore')}}">Explore</a></li>
+                <li><a href="{{url_for('main.pub_share')}}">Share</a></li>
+                <li><a href="{{url_for('main.pub_question')}}">Q&A</a></li>
             </ul>
             <form class="navbar-form navbar-left" style="margin-top: 7px">
                 <div class="form-group">

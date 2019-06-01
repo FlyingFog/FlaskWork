@@ -31,10 +31,10 @@
 
         <div class="collapse navbar-collapse" id="navbar-collapse-1" style="margin-top: 10px;font-family: 'Segoe UI';">
             <ul class="nav navbar-nav" style="font-size: 20px">
-                <li><a href="#">Home</a></li><!--href显示user.index页面-->
-                <li><a href="#">Explore</a></li><!--href显示explore.index页面-->
-                <li><a href="#">Share</a></li><!--href显示share页面-->
-                <li><a href="#">Q&A</a></li><!--href显示Q&A页面-->
+                <li><a href="{{url_for('main.index')}}">Home</a></li>
+                <li><a href="{{url_for('main.explore')}}">Explore</a></li>
+                <li><a href="{{url_for('main.pub_share')}}">Share</a></li>
+                <li><a href="{{url_for('main.pub_question')}}">Q&A</a></li>
             </ul>
             <form class="navbar-form navbar-left" style="margin-top: 7px">
                 <div class="form-group">
@@ -46,7 +46,7 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Joyce</p><!--user.name-->
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{current_user.username}}</p><!--user.name-->
             <a href="#" style="margin-top: 12px"><img src="{{ avatars.default() }}" style="width: 35px"> </a>
             <!--href为进入home,即user.index页面；src为get_avatar(user=current_user)-->
         </div>
@@ -57,15 +57,17 @@
         <img class="img-rounded" src="{{ avatars.default() }}" style="width: 230px;height: 230px;margin-left: 80px">
     </div>
     <div class="col-md-7" style="margin-left: 30px">
-        <h1>Joyce</h1>
-        <p style="font-family: 'Segoe UI'"><span class="glyphicon glyphicon-education"></span>&nbsp;&nbsp;SCU&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <span class="glyphicon glyphicon-calendar"></span>&nbsp;&nbsp;Joined </p>
+        <h1>{{current_user.username}}</h1>
+        <p style="font-family: 'Segoe UI'"><span class="glyphicon glyphicon-education"></span>&nbsp;&nbsp;{{current_user.school}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="glyphicon glyphicon-calendar"></span>&nbsp;&nbsp;{{current_user.regtime}} </p>
         <!-- user.school   moment(user.member_since).format('LL') -->
         <br><br><br><br>
         <div class="col-md-offset-11">
-            {{ follow_area(user) }}
+            {{ follow_area(user,current_user) }}
             {% if current_user.is_authenticated and user == current_user %}
-            <button class="btn btn-primary btn-sm" href="#">Edit profile</button>
+            <a href="{{url_for('main.edit_profile')}}">
+                <button type="button" class="btn btn-primary btn-sm">Edit profile</button>
+            </a>
             {% endif %}
         </div>
     </div>

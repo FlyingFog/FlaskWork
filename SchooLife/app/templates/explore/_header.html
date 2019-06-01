@@ -30,10 +30,10 @@
 
         <div class="collapse navbar-collapse" id="navbar-collapse-1" style="margin-top: 10px;font-family: 'Segoe UI';">
             <ul class="nav navbar-nav" style="font-size: 20px">
-                <li><a href="#">Home</a></li><!--href显示user.index页面-->
-                <li><a href="#">Explore</a></li><!--href显示explore.index页面-->
-                <li><a href="#">Share</a></li><!--href显示share页面-->
-                <li><a href="#">Q&A</a></li><!--href显示Q&A页面-->
+                <li><a href="{{url_for('main.index')}}">Home</a></li>
+                <li><a href="{{url_for('main.explore')}}">Explore</a></li>
+                <li><a href="{{url_for('main.pub_share')}}">Share</a></li>
+                <li><a href="{{url_for('main.pub_question')}}">Q&A</a></li>
             </ul>
             <form class="navbar-form navbar-left" style="margin-top: 7px">
                 <div class="form-group">
@@ -45,7 +45,7 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Joyce</p><!--user.name-->
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{current_user.username}}</p><!--user.name-->
             <a href="#" style="margin-top: 12px"><img src="{{ avatars.default() }}" style="width: 35px"> </a><!--href为进入home,即user.index页面；src为get_avatar(user=current_user)-->
         </div>
     </div>

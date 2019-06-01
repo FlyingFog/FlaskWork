@@ -12,6 +12,8 @@ TODO:
         2.图片上传问题
         bugs:
         1.ProfileForm都没有设置validators=[DataRequired()]，但是edit profile必须全部把信息填完才能提交
+    main views.py
+        路由的render_template 的参数 user=user 应该都可以删掉了
 =======
 
 **

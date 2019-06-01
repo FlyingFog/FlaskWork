@@ -15,7 +15,7 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
-@main.route('/index', methods=['GET', 'POST'])
+@main.route('/index/shares', methods=['GET', 'POST'])
 @login_required
 def index():
     user = current_user
@@ -32,23 +32,61 @@ def index():
             flash("发布成功")
             db.session.add(share)
             db.session.commit()
-            # return redirect(url_for('main.index', uid=user.uid))
+            return redirect(url_for('main.index'))
         except Exception as e:
             print(e)
             flash("发布失败")
             db.session.rollback()
     return render_template('user/index.html',
                            user=user,
-                           share_form=share_form,)
-                           # rand=random.randint(1000, 9999))
+                           share_form=share_form,
+                           rand=random.randint(1000, 9999))
 
 
-@main.route('/index/friends', methods=['GET', 'POST'])
+@main.route('/index', methods=['GET', 'POST'])
 @login_required
-def friends():
+def shares():
     user = current_user
-    return render_template('friends.html', user=user)
+    shares = [1, 2, 3, 4, 5, 6]
+    return render_template('user/index.html', user=user, shares=shares)
 
+
+@main.route('/index/QandAs', methods=['GET', 'POST'])
+@login_required
+def QandAs():
+    user = current_user
+    questions = [1, 2, 3, 4, 5, 6]
+    return render_template('user/Q&As.html', user=user,questions=questions)
+
+
+@main.route('/index/following', methods=['GET', 'POST'])
+@login_required
+def following():
+    user = current_user
+    followings = [1, 2, 3, 4, 5, 6]
+    return render_template('user/following.html', user=user,followings=followings)
+
+
+@main.route('/index/follower', methods=['GET', 'POST'])
+@login_required
+def follower():
+    user = current_user
+    followers = [1, 2, 3, 4, 5, 6]
+    return render_template('user/follower.html', user=user,followers=followers)
+
+
+@main.route('/index/explore', methods=['GET', 'POST'])
+@login_required
+def explore():
+    user = current_user
+    return render_template('explore/index.html', user=user)
+
+
+@main.route('/index/pub_share', methods=['GET', 'POST'])
+@login_required
+def pub_share():
+    user = current_user
+    return render_template('user/pub_share.html', user=user)
 
 
 @main.route('/index/pub_question', methods=['GET', 'POST'])
@@ -72,7 +110,7 @@ def pub_question():
             print(e)
             flash("发布失败")
             db.session.rollback()
-    return render_template('pub_question.html', user=user, question_form=question_form)
+    return render_template('user/pub_Q&A.html', user=user, question_form=question_form)
 
 
 @main.route('/index/edit_profile', methods=['GET', 'POST'])
@@ -117,11 +155,11 @@ def edit_profile():
             except Exception as e:
                 print(e)
                 flash("发布失败")
-                # db.session.rollback()
+                db.session.rollback()
     else:
         if request.method == "POST":
             flash("两次输入密码不一致 或 填写不合法")
-    return render_template('edit_profile.html', user=user, form=profile_form)
+    return render_template('user/edit_profile.html', user=user, form=profile_form)
 
 
 @main.route('/index/delete_share/<uid>/<sid>', methods=['GET', 'POST'])

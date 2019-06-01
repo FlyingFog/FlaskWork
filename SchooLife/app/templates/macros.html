@@ -32,7 +32,7 @@
 {% endmacro %}
 
 
-{% macro follow_area(user) %}
+{% macro follow_area(user,current_user) %}
     {% if current_user.is_authenticated %}
         {% if user != current_user %}
             {% if current_user.is_following(user) %}<!--is_following函数-->

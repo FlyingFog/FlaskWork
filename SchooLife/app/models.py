@@ -8,16 +8,13 @@ from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import login_manager
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
-from urllib import parse
 
 
 class Follow(db.Model):
     __tablename__ = 'followinfo'
 
-    followuid = db.Column(db.INT, db.ForeignKey('users.id'),
-                          primary_key=True)
-    followeruid = db.Column(db.INT, db.ForeignKey('users.id'),
-                            primary_key=True)
+    followuid = db.Column(db.INT, db.ForeignKey('users.id'), primary_key=True)
+    followeruid = db.Column(db.INT, db.ForeignKey('users.id'), primary_key=True)
     followtime = db.Column(db.DATETIME, default=datetime.utcnow)
 
 
@@ -25,13 +22,13 @@ class User(UserMixin, db.Model):
     __tablename__ = 'users'
 
     id = db.Column(db.INT, primary_key=True)
-    email = db.Column(db.VARCHAR(256))
+    email = db.Column(db.VARCHAR(255))
     password = db.Column(db.VARCHAR(512))
     confirmed = db.Column(db.BOOLEAN, default=False)
-    username = db.Column(db.VARCHAR(256))
-    realname = db.Column(db.VARCHAR(256))
+    username = db.Column(db.VARCHAR(255))
+    realname = db.Column(db.VARCHAR(255))
     has_img = db.Column(db.INT, default=0)
-    portrait = db.Column(db.VARCHAR(256))
+    portrait = db.Column(db.VARCHAR(255))
     permit = db.Column(db.INT, default=1)
     gender = db.Column(db.INT)
     age = db.Column(db.INT)
@@ -95,9 +92,9 @@ class Share(db.Model):
     __tablename__ = 'share'
     sid = db.Column(db.INT, primary_key=True)
     writeruid = db.Column(db.INT, db.ForeignKey('users.id'))
-    label = db.Column(db.VARCHAR(256))
-    image = db.Column(db.VARCHAR(256))
-    content = db.Column(db.TEXT(65536))
+    label = db.Column(db.VARCHAR(255))
+    image = db.Column(db.VARCHAR(255))
+    content = db.Column(db.TEXT(65535))
     pubtime = db.Column(db.DATETIME, default=datetime.utcnow)
     newnum = db.Column(db.INT, default=0)
     star = db.Column(db.INT, default=0)
@@ -113,7 +110,7 @@ class Comment(db.Model):
 
     sid = db.Column(db.INT, db.ForeignKey('share.sid'))
     writerid = db.Column(db.INT, db.ForeignKey('users.id'))
-    content = db.Column(db.TEXT(65536))
+    content = db.Column(db.TEXT(65535))
     pubtime = db.Column(db.DATETIME, default=datetime.utcnow)
 
     def to_dict(self):
@@ -126,8 +123,8 @@ class Question(db.Model):
 
     qid = db.Column(db.INT, primary_key=True)
 
-    label = db.Column(db.VARCHAR(256))
-    content = db.Column(db.TEXT(65536))
+    label = db.Column(db.VARCHAR(255))
+    content = db.Column(db.TEXT(65535))
     writeruid = db.Column(db.INT, db.ForeignKey('users.id'))
     newnum = db.Column(db.INT)
 
