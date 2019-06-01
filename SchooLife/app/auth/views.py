@@ -49,7 +49,7 @@ def login():
             login_user(user, form.remember_me.data)
             return redirect(url_for('auth.unconfirmed'))
         flash("用户名或密码错误")
-    return render_template('auth/login.html', form=form)
+    return render_template('auth/login.html', form=form, current_user=current_user)
 
 
 @auth.route('/signup', methods=['GET', 'POST'])
@@ -84,7 +84,7 @@ def signup():
             db.session.rollback()
     else:
         if request.method == "POST":
-            flash("注册失败")
+            flash("注册失败validate出错")
     return render_template('auth/signup.html', form=form)
 
 

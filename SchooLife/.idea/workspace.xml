@@ -2,71 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8d6801b1-9b13-46c6-82b2-efea173a9038" name="默认更改列表" comment="">
-      <change afterPath="$PROJECT_DIR$/app/static/JJ.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/images/3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/images/4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/images/error.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/open-iconic/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/open-iconic/FONT-LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/open-iconic/ICON-LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/open-iconic/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/open-iconic/bower.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/open-iconic/font/css/open-iconic-bootstrap.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/open-iconic/font/css/open-iconic-bootstrap.less" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/open-iconic/font/css/open-iconic-bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/open-iconic/font/css/open-iconic-bootstrap.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/open-iconic/font/css/open-iconic-bootstrap.styl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/open-iconic/font/css/open-iconic-foundation.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/open-iconic/font/css/open-iconic-foundation.less" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/open-iconic/font/css/open-iconic-foundation.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/open-iconic/font/css/open-iconic-foundation.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/open-iconic/font/css/open-iconic-foundation.styl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/open-iconic/font/css/open-iconic.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/open-iconic/font/css/open-iconic.less" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/open-iconic/font/css/open-iconic.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/open-iconic/font/css/open-iconic.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/open-iconic/font/css/open-iconic.styl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/open-iconic/font/fonts/open-iconic.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/open-iconic/font/fonts/open-iconic.otf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/open-iconic/font/fonts/open-iconic.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/open-iconic/font/fonts/open-iconic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/open-iconic/font/fonts/open-iconic.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/open-iconic/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/templates/explore/Q&amp;A.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/templates/explore/_header.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/templates/explore/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/templates/macros.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/templates/user/Q&amp;A.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/templates/user/_header.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/templates/user/follower.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/templates/user/following.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/templates/user/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/templates2/auth/base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/templates2/auth/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/templates2/auth/signup.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/templates/auth/email.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/templates/auth/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/templates/auth/unconfirmed.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/auth/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/auth/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/app/static2/1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/app/static2/2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/default.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/app/static2/default.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/auth/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/auth/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/auth/email.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates2/auth/email.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/auth/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates2/auth/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/auth/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/auth/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/auth/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates2/auth/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/auth/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/auth/signup.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/auth/unconfirmed.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates2/auth/unconfirmed.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/edit_profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates2/edit_profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/friends.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates2/friends.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates2/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates2/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/pub_question.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates2/pub_question.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates2/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates2/signup.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/user/_header.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/user/_header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask.db" beforeDir="false" afterPath="$PROJECT_DIR$/flask.db" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -113,119 +57,7 @@
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manage.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="58">
-              <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="523">
-              <caret line="134" column="62" lean-forward="true" selection-start-line="134" selection-start-column="62" selection-end-line="134" selection-end-column="62" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="928">
-              <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
-              <folding>
-                <element signature="e#0#23#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/email.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="29">
-              <caret line="2" column="29" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/templates/auth/login.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="501">
-              <caret line="20" column="20" lean-forward="true" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
-              <folding>
-                <element signature="n#style#0;n#p#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/auth/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1479">
-              <caret line="12" column="19" lean-forward="true" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
-              <folding>
-                <element signature="e#0#69#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/templates/macros.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="406">
-              <caret line="14" column="31" lean-forward="true" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/templates/user/_header.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="257">
-              <caret line="64" column="26" selection-start-line="64" selection-start-column="15" selection-end-line="64" selection-end-column="26" />
-              <folding>
-                <element signature="e#2399#2405#0" expanded="true" />
-                <element signature="e#2417#2423#0" expanded="true" />
-                <element signature="e#2429#2435#0" expanded="true" />
-                <element signature="e#2500#2506#0" expanded="true" />
-                <element signature="e#2536#2542#0" expanded="true" />
-                <element signature="e#2595#2601#0" expanded="true" />
-                <element signature="e#2619#2625#0" expanded="true" />
-                <element signature="e#2655#2661#0" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#div#1;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#a#0;n#div#1;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/templates2/signup.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="667">
-              <caret line="23" column="10" lean-forward="true" selection-start-line="22" selection-end-line="24" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -241,8 +73,8 @@
       <find>注册</find>
       <find>signup</find>
       <find>cur</find>
-      <find>current</find>
       <find>follow_area</find>
+      <find>current</find>
     </findStrings>
     <replaceStrings>
       <replace>id</replace>
@@ -272,12 +104,13 @@
         <option value="$PROJECT_DIR$/app/templates/index.html" />
         <option value="$PROJECT_DIR$/app/templates/auth/unconfirmed.html" />
         <option value="$PROJECT_DIR$/config.py" />
-        <option value="$PROJECT_DIR$/app/main/views.py" />
         <option value="$PROJECT_DIR$/app/templates/auth/login.html" />
         <option value="$PROJECT_DIR$/app/templates/auth/signup.html" />
         <option value="$PROJECT_DIR$/app/__init__.py" />
-        <option value="$PROJECT_DIR$/app/auth/views.py" />
         <option value="$PROJECT_DIR$/manage.py" />
+        <option value="$PROJECT_DIR$/app/templates/user/_header.html" />
+        <option value="$PROJECT_DIR$/app/main/views.py" />
+        <option value="$PROJECT_DIR$/app/auth/views.py" />
       </list>
     </option>
   </component>
@@ -304,6 +137,30 @@
               <item name="SchooLife" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="SchooLife" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SchooLife" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="auth" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SchooLife" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SchooLife" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SchooLife" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SchooLife" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SchooLife" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SchooLife" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -315,21 +172,21 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.console.LAST_STATE" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/templates/auth" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\MyGit\FlaskWork\SchooLife\app\templates\auth" />
-      <recent name="E:\MyGit\FlaskWork\SchooLife" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/templates/auth" />
       <recent name="$PROJECT_DIR$/app" />
       <recent name="E:\MyGit\FlaskWork\SchooLife\app\templates\auth" />
       <recent name="E:\MyGit\FlaskWork\SchooLife\app" />
       <recent name="E:\MyGit\FlaskWork\SchooLife\app\templates" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\MyGit\FlaskWork\SchooLife\app\templates\auth" />
       <recent name="E:\MyGit\FlaskWork\SchooLife" />
     </key>
   </component>
@@ -476,16 +333,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1032" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="DB Browser" weight="0.32998413" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21311475" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49942857" visible="true" weight="0.21311475" />
+      <window_info id="Structure" order="1" sideWeight="0.5005714" side_tool="true" weight="0.21311475" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="DB Execution Console" />
+      <window_info id="DB Browser" order="3" weight="0.32998413" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49932975" weight="0.328" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49396783" weight="0.33485714" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49396783" weight="0.4982857" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -493,11 +348,12 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.3286119" />
       <window_info anchor="bottom" id="Database Changes" order="9" weight="0.3286119" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5033512" side_tool="true" weight="0.3286119" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50132203" side_tool="true" weight="0.58514285" />
       <window_info anchor="bottom" id="调试" order="11" sideWeight="0.49865952" weight="0.3286119" />
-      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.49932975" weight="0.58514285" />
-      <window_info anchor="bottom" id="Python Console" order="13" weight="0.3286119" />
+      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.49867794" weight="0.62857145" />
+      <window_info anchor="bottom" id="Python Console" order="13" sideWeight="0.4976203" weight="0.328" />
       <window_info anchor="bottom" id="Database Console" order="14" sideWeight="0.4966488" weight="0.3286119" />
+      <window_info anchor="bottom" id="DB Execution Console" order="15" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -534,18 +390,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/requirements.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="das://a2e250cc-9ad4-46ef-be1f-ec5d1ec87161/schema/main/table/share" />
-    <entry file="file://$USER_HOME$/Desktop/SchooLife/manage.py" />
-    <entry file="file://$PROJECT_DIR$/app/auth/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/code/python/flask1/venv/Lib/site-packages/flask_login/utils.py" />
     <entry file="file://$PROJECT_DIR$/app/templates/unconfirmed.html" />
     <entry file="file://$PROJECT_DIR$/Question Record">
@@ -637,42 +481,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="db://5cc4d1cc-48a4-48c0-b699-9bd187b79886/objects/schemas/main/tables/users">
-      <provider selected="true" editor-type-id="1.DATA">
-        <state row-count="3" readonly="false">
-          <columns>
-            <column name="id" position="0" visible="true" />
-            <column name="email" position="1" visible="true" />
-            <column name="password" position="2" visible="true" />
-            <column name="confirmed" position="3" visible="true" />
-            <column name="username" position="4" visible="true" />
-            <column name="realname" position="5" visible="true" />
-            <column name="has_img" position="6" visible="true" />
-            <column name="portrait" position="7" visible="true" />
-            <column name="permit" position="8" visible="true" />
-            <column name="gender" position="9" visible="true" />
-            <column name="age" position="10" visible="true" />
-            <column name="school" position="11" visible="true" />
-            <column name="selfinfo" position="12" visible="true" />
-            <column name="regtime" position="13" visible="true" />
-            <column name="totshare" position="14" visible="true" />
-            <column name="totques" position="15" visible="true" />
-            <column name="totans" position="16" visible="true" />
-          </columns>
-          <sorting />
-          <content-types />
-        </state>
-      </provider>
-    </entry>
+    <entry file="db://5cc4d1cc-48a4-48c0-b699-9bd187b79886/objects/schemas/main/tables/users" />
     <entry file="file://$PROJECT_DIR$/config.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="232">
           <caret line="8" column="103" selection-start-line="8" selection-start-column="103" selection-end-line="8" selection-end-column="103" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/main/forms.py">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates2/edit_profile.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -701,37 +516,12 @@
     <entry file="file://$PROJECT_DIR$/app/static/images/error.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/auth/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-976" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/main/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="537">
-          <caret line="142" column="29" selection-start-line="142" selection-start-column="29" selection-end-line="142" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#68#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/auth/forms.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="612">
           <caret line="29" selection-start-line="29" selection-end-line="29" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/auth/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="501">
-          <caret line="20" column="20" lean-forward="true" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
-          <folding>
-            <element signature="n#style#0;n#p#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -743,24 +533,102 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates2/signup.html">
+    <entry file="file://$PROJECT_DIR$/app/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="667">
-          <caret line="23" column="10" lean-forward="true" selection-start-line="22" selection-end-line="24" selection-end-column="10" />
+        <state relative-caret-position="58">
+          <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3683">
+          <caret line="134" column="62" selection-start-line="134" selection-start-column="62" selection-end-line="134" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="928">
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/explore/_header.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates2/signup.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="551">
+          <caret line="19" column="7" lean-forward="true" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates2/register.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/email.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="58">
+          <caret line="2" column="29" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/macros.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/main/forms.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/auth/unconfirmed.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/auth/signup.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="573">
+        <state relative-caret-position="812">
           <caret line="28" column="10" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/auth/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="580">
+          <caret line="20" column="20" lean-forward="true" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
+          <folding>
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/auth/index.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/auth/email.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/auth/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1131" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/user/_header.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="64" column="26" selection-start-line="64" selection-start-column="15" selection-end-line="64" selection-end-column="26" />
+        <state relative-caret-position="399">
+          <caret line="65" selection-start-line="65" selection-end-line="65" />
           <folding>
             <element signature="e#2399#2405#0" expanded="true" />
             <element signature="e#2417#2423#0" expanded="true" />
@@ -776,58 +644,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/__init__.py">
+    <entry file="file://$PROJECT_DIR$/app/templates/user/follower.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/user/following.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/user/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="928">
-          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="87">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/email.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="29">
-          <caret line="2" column="29" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/app/templates/user/Q&amp;A.html">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/auth/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1479">
-          <caret line="12" column="19" lean-forward="true" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
+        <state relative-caret-position="442">
+          <caret line="50" lean-forward="true" selection-start-line="50" selection-end-line="50" />
           <folding>
-            <element signature="e#0#69#0" expanded="true" />
+            <element signature="e#0#68#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/manage.py">
+    <entry file="file://$PROJECT_DIR$/app/main/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="58">
-          <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="523">
-          <caret line="134" column="62" lean-forward="true" selection-start-line="134" selection-start-column="62" selection-end-line="134" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/macros.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="14" column="31" lean-forward="true" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
+        <state relative-caret-position="-261">
+          <caret line="33" column="14" lean-forward="true" selection-start-line="33" selection-start-column="14" selection-end-line="33" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#68#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
