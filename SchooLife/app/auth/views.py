@@ -1,6 +1,7 @@
 from flask import render_template, redirect, url_for, request, flash
 from app.email import send_email
 from . import auth
+from app import login_manager
 from .. import db
 from app.auth.forms import LoginForm, SignupForm
 from ..models import User, Share, Question
@@ -39,7 +40,13 @@ def unconfirmed():
     return render_template('auth/unconfirmed.html')
 
 
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+
 @auth.route('/', methods=['GET', 'POST'])
+@login_required
 def login():
     form = LoginForm()
     if form.validate_on_submit():
@@ -47,6 +54,8 @@ def login():
         user = User.query.filter_by(email=form.email.data).first()
         if user and user.verify_password(password):
             login_user(user, form.remember_me.data)
+            # flash('登录成功')
+            # login_user(user)
             return redirect(url_for('auth.unconfirmed'))
         flash("用户名或密码错误")
     return render_template('auth/login.html', form=form)
@@ -84,7 +93,7 @@ def signup():
             db.session.rollback()
     else:
         if request.method == "POST":
-            flash("注册失败")
+            flash("注册失败validate出错")
     return render_template('auth/signup.html', form=form)
 
 

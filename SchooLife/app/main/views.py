@@ -31,7 +31,9 @@ def index():
             print(e)
             flash("发布失败")
             db.session.rollback()
-    return render_template('user/index.html', user=user, share_form=share_form,
+    return render_template('user/index.html',
+                           user=user,
+                           share_form=share_form,
                            rand=random.randint(1000, 9999))
 
 
@@ -40,6 +42,10 @@ def index():
 def friends():
     user = current_user
     return render_template('friends.html', user=user)
+
+
+
+
 
 
 @main.route('/index/pub_question', methods=['GET', 'POST'])
