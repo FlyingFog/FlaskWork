@@ -51,13 +51,16 @@ def login():
     if form.validate_on_submit():
         password = request.form.get('password')
         user = User.query.filter_by(email=form.email.data).first()
-        if user and user.verify_password(password):
-            login_user(user, form.remember_me.data)
-            if current_user.confirmed:
-                return redirect(url_for('main.index'))
-            return render_template('auth/unconfirmed.html')
-            # return redirect(url_for('auth.unconfirmed'))
-        flash("用户名或密码错误")
+        if not user:
+            flash('用户不存在')
+        else:
+            if user.verify_password(password):
+                login_user(user, form.remember_me.data)
+                if current_user.confirmed:
+                    return redirect(url_for('main.index'))
+                return render_template('auth/unconfirmed.html')
+                # return redirect(url_for('auth.unconfirmed'))
+            flash("用户名或密码错误")
     return render_template('auth/login.html', form=form)
 
 
@@ -104,9 +107,3 @@ def logout():
     return redirect(url_for('auth.login'))
 
 
-"""
-@auth.route('/index')
-@login_required
-def index():
-    return "这是current_user: "+str(current_user.id)
-"""

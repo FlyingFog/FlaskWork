@@ -8,12 +8,11 @@ template 中 重定向或路由url 应该与所用路由（蓝图）一致
 **
 TODO:
     edit profile内:
-        1.重设邮箱后发邮件，邮件内容要改一下
         2.图片上传问题
         bugs:
         1.ProfileForm都没有设置validators=[DataRequired()]，但是edit profile必须全部把信息填完才能提交
     main views.py
-        路由的render_template 的参数 user=user 应该都可以删掉了
+        路由的render_template 的参数 user=user 应该都可以删掉了(并不能，谨慎删)
 =======
 
 **

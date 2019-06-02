@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for, request, flash
+from flask import render_template, redirect, url_for, request, flash, current_app
 from . import main
 from .. import db
 from ..models import User, Share, Question
@@ -15,7 +15,7 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
-@main.route('/index/shares', methods=['GET', 'POST'])
+@main.route('/index/shares/', methods=['GET', 'POST'])
 @login_required
 def index():
     user = current_user
@@ -43,36 +43,106 @@ def index():
                            rand=random.randint(1000, 9999))
 
 
-@main.route('/index', methods=['GET', 'POST'])
+@main.route('/follow/<username>')
 @login_required
-def shares():
-    user = current_user
-    shares = [1, 2, 3, 4, 5, 6]
+def follow(username):
+    user = User.query.filter_by(username=username).first()
+    if user is None:
+        flash('Invalid user.')
+        return redirect(url_for('.index'))
+    if current_user.is_following(user):
+        flash('You are already following this user.')
+        return redirect(url_for('.user', username=username))
+    current_user.follow(user)
+    flash('You are now following %s.' % username)
+    return redirect(url_for('.user', username=username))
+
+
+@main.route('/unfollow/<username>')
+@login_required
+def unfollow(username):
+    user = User.query.filter_by(username=username).first()
+    if user is None:
+        flash('Invalid user.')
+        return redirect(url_for('.index'))
+    if not current_user.is_following(user):
+        flash('You are not following this user.')
+        return redirect(url_for('.user', username=username))
+    current_user.unfollow(user)
+    flash('You are not following %s anymore.' % username)
+    return redirect(url_for('.user', username=username))
+
+
+@main.route('/followers/<username>')
+def followers(username):
+    user = User.query.filter_by(username=username).first()
+    if user is None:
+        flash('Invalid user.')
+        return redirect(url_for('.index'))
+    follows = [{'user': item.follower, 'timestamp': item.timestamp}
+               for item in pagination.items]
+    return render_template('followers.html', user=user, title="Followers of",
+                           endpoint='.followers', pagination=pagination,
+                           follows=follows)
+
+
+@main.route('/followed-by/<username>')
+def followed_by(username):
+    user = User.query.filter_by(username=username).first()
+    if user is None:
+        flash('Invalid user.')
+        return redirect(url_for('.index'))
+    page = request.args.get('page', 1, type=int)
+    pagination = user.followed.paginate(
+        page, per_page=current_app.config['FLASKY_FOLLOWERS_PER_PAGE'],
+        error_out=False)
+    follows = [{'user': item.followed, 'timestamp': item.timestamp}
+               for item in pagination.items]
+    return render_template('followers.html', user=user, title="Followed by",
+                           endpoint='.followed_by', pagination=pagination,
+                           follows=follows)
+
+
+@main.route('/user/<username>', methods=['GET', 'POST'])
+@login_required
+def user(username):
+    user = User.query.filter_by(username=username).first()
+    print('------------------')
+    print(username)
+    print(user)
+    return render_template('user/index.html', user=user)
+
+
+@main.route('/index/<username>/shares', methods=['GET', 'POST'])
+@login_required
+def shares(username):
+    user = User.query.filter_by(username=username).first()
+    shares = user.shares
     return render_template('user/index.html', user=user, shares=shares)
 
 
-@main.route('/index/QandAs', methods=['GET', 'POST'])
+@main.route('/index/<username>/QandAs', methods=['GET', 'POST'])
 @login_required
-def QandAs():
-    user = current_user
-    questions = [1, 2, 3, 4, 5, 6]
-    return render_template('user/Q&As.html', user=user,questions=questions)
+def QandAs(username):
+    user = User.query.filter_by(username=username).first()
+    questions = user.questions
+    return render_template('user/Q&As.html', user=user, questions=questions)
 
 
-@main.route('/index/following', methods=['GET', 'POST'])
+@main.route('/index/<username>/following', methods=['GET', 'POST'])
 @login_required
-def following():
-    user = current_user
-    followings = [1, 2, 3, 4, 5, 6]
-    return render_template('user/following.html', user=user,followings=followings)
+def following(username):
+    user = User.query.filter_by(username=username).first()
+    followings = user.followed
+    return render_template('user/following.html', user=user, followings=followings)
 
 
-@main.route('/index/follower', methods=['GET', 'POST'])
+@main.route('/index/<username>/follower', methods=['GET', 'POST'])
 @login_required
-def follower():
-    user = current_user
-    followers = [1, 2, 3, 4, 5, 6]
-    return render_template('user/follower.html', user=user,followers=followers)
+def follower(username):
+    user = User.query.filter_by(username=username).first()
+    followers = user.followers
+    return render_template('user/follower.html', user=user, followers=followers)
 
 
 @main.route('/index/explore', methods=['GET', 'POST'])

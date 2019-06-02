@@ -8,7 +8,6 @@ class Config:
     #db Config
 
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'flask.db') +"?check_same_thread=False"
-    #mysql://root:123456@localhost:3306/flask
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     #login Config

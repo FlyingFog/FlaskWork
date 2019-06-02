@@ -57,13 +57,13 @@
         <img class="img-rounded" src="{{ avatars.default() }}" style="width: 230px;height: 230px;margin-left: 80px">
     </div>
     <div class="col-md-7" style="margin-left: 30px">
-        <h1>{{current_user.username}}</h1>
+        <h1>{{user.username}}</h1>
         <p style="font-family: 'Segoe UI'"><span class="glyphicon glyphicon-education"></span>&nbsp;&nbsp;{{current_user.school}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <span class="glyphicon glyphicon-calendar"></span>&nbsp;&nbsp;{{current_user.regtime}} </p>
         <!-- user.school   moment(user.member_since).format('LL') -->
         <br><br><br><br>
         <div class="col-md-offset-11">
-            {{ follow_area(user,current_user) }}
+            {{ follow_area(user, current_user) }}
             {% if current_user.is_authenticated and user == current_user %}
             <a href="{{url_for('main.edit_profile')}}">
                 <button type="button" class="btn btn-primary btn-sm">Edit profile</button>
