@@ -20,9 +20,9 @@
     </div>
 {% endmacro %}
 
-{% macro user_card(user) %}
+{% macro user_card(user,avatars) %}
     <div class="user_card text-center">
-        <a href="{{url_for('main.user',username=user.username)}}"><img class="img-rounded avatar-m" src="{{ url_for('static',filename='JJ.jpg') }}"
+        <a href="{{url_for('main.user',username=user.username)}}"><img class="img-rounded avatar-m" src="{{ avatars.robohash(user.username) }}"
                          style="width: 100px;height: 100px"><!--href进别人的主页，src来自get_avatars-->
         </a>
         <h5><a href="{{url_for('main.user',username=user.username)}}">{{ user.username }}</a></h5>
@@ -52,7 +52,6 @@
         {% endif %}
     {% else %}
         <a href="{{ url_for('main.follow', username=user.username) }}">
-
             <button type="submit" class="btn btn-primary btn-sm">Follow</button>
         </a>
     {% endif %}

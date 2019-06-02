@@ -47,14 +47,14 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{current_user.username}}</p><!--user.name-->
-            <a href="#" style="margin-top: 12px"><img src="{{ avatars.default() }}" style="width: 35px"> </a>
+            <a href="#" style="margin-top: 12px"><img src="{{ avatars.robohash(current_user.username) }}" style="width: 35px"> </a>
             <!--href为进入home,即user.index页面；src为get_avatar(user=current_user)-->
         </div>
     </div>
 </nav>
 <div class="row">
     <div class="col-md-3">
-        <img class="img-rounded" src="{{ avatars.default() }}" style="width: 230px;height: 230px;margin-left: 80px">
+        <img class="img-rounded" src="{{ avatars.robohash(user.username) }}" style="width: 230px;height: 230px;margin-left: 80px">
     </div>
     <div class="col-md-7" style="margin-left: 30px">
         <h1>{{user.username}}</h1>

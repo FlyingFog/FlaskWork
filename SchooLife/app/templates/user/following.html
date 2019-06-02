@@ -13,7 +13,7 @@
         {% if followings %}
             {% for following in followings %}
                 <div class="col-md-3" style="margin-top: 40px; margin-left: -10px">
-                    {{ user_card(following.followed) }}
+                    {{ user_card(following.followed,avatars) }}
                 </div>
             {% endfor %}
             </div>
