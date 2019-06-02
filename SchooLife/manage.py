@@ -5,9 +5,9 @@ app = create_app()
 
 if __name__ == '__main__':
     with app.app_context():
-        # db.session.rollback()
-        # db.drop_all()
-        # db.create_all()
+        db.session.rollback()
+        db.drop_all()
+        db.create_all()
 
         u1 = models.User(email="u1@qq.com", username='u1', password=models.generate_password_hash("123"), confirmed=1)
         u2 = models.User(email="u2@qq.com", username='u2', password=models.generate_password_hash("123"), confirmed=1)
