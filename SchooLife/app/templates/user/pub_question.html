@@ -17,19 +17,24 @@
     <div class="page-header" style="margin: 1px auto;text-align: center;background-color: white;width: 800px;height: auto">
         <h1>Add Question</h1>
     </div>
+    <form method='post'>
+    {{ question_form.csrf_token() }}
     <textarea class="form-control" style="font-size:x-large;background-color: white;border-style: none;width: 800px;height: auto;margin: 10px auto"
-              id="share-content" rows="2" placeholder="请输入问题标题"></textarea>
+              id="label" name="label" rows="2" placeholder="请输入问题标题"></textarea>
     <textarea class="form-control" style="background-color: white;border-style: none;width: 800px;height: auto;margin: 10px auto"
-              id="share-content" rows="10" placeholder="请输入问题描述"></textarea>
+              id="content" name="content"  rows="10" placeholder="请输入问题描述"></textarea>
         <div style="margin: auto;width: 800px;height: auto;text-align: right">
-        <a href="#">
-            <span><button type="submit" class="btn btn-primary" style="margin: 10px auto">OK</button></span>
+        <a href="{{url_for('main.pub_question')}}">
+            <span><button id="submit" name="submit" type="submit" class="btn btn-primary" style="margin: 10px auto">Submit</button></span>
         </a>
-        <a href="#">
-            <span><button type="submit" class="btn btn-primary" style="margin: 10px 20px">Back</button></span>
+
+        <a href="{{url_for('main.index')}}">
+            <span><button class="btn btn-primary" style="margin: 10px 20px">Back</button></span>
         </a>
         </div>
+    </form>
 </div>
+
 </body>
 
 <script>

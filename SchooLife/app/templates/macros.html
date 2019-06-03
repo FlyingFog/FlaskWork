@@ -15,8 +15,8 @@
 
 {% macro question_card(question) %}
     <div class="panel-default">
-        <div class="panel-heading"><a href="#">title</a></div><!--{{ question.title }},href改成show_question-->
-        <div class="panel-body">brief content</div><!--{{ question.content|striptags|truncate(50,True) }},显示50个字。也可改变-->
+        <div class="panel-heading"><a href="#">{{ question.label }}</a></div><!--{{ question.title }},href改成show_question-->
+        <div class="panel-body">{{ question.content }}</div><!--{{ question.content|striptags|truncate(50,True) }},显示50个字。也可改变-->
     </div>
 {% endmacro %}
 

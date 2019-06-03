@@ -26,20 +26,25 @@
         <input type="file" id="avatar_file" name="avatar_file" accept="image/jpg,image/png,image/gif"
                style="width: 100%;height:100%;opacity: 0;position: absolute;left:0;top: 0;"/>
     </div>
+
+    <form method='post'>
     <div>
-        <textarea class="form-control" style="font-size:x-large;background-color: white;border-style: none;width: 800px;height: auto;margin: 10px auto"
-              id="share-content" rows="2" placeholder="请输入分享标签"></textarea>
-        <textarea class="form-control" style="background-color: white;border-style: none;width: 800px;height: auto;margin: 10px auto"
-                  id="share-content" rows="15" placeholder="请输入分享内容"></textarea>
+            {{ share_form.csrf_token() }}
+            <textarea id="label" name="label" class="form-control" style="font-size:x-large;background-color: white;border-style: none;width: 800px;height: auto;margin: 10px auto"
+                rows="2" placeholder="请输入分享标签"></textarea>
+            <textarea id="content" name="content" class="form-control" style="background-color: white;border-style: none;width: 800px;height: auto;margin: 10px auto"
+                rows="15" placeholder="请输入分享内容"></textarea>
     </div>
     <div style="margin: auto;width: 800px;height: auto;text-align: right">
         <a href="{{url_for('main.pub_share')}}">
-            <span><button type="submit" class="btn btn-primary" style="margin: 10px auto">OK</button></span>
+            <span><button id="submit" name="submit" type="submit" class="btn btn-primary" style="margin: 10px auto">Submit</button></span>
         </a>
+
         <a href="{{url_for('main.index')}}">
-            <span><button type="submit" class="btn btn-primary" style="margin: 10px 20px">Back</button></span>
+            <span><button class="btn btn-primary" style="margin: 10px 20px">Back</button></span>
         </a>
     </div>
+    </form>
 
 </div>
 </body>

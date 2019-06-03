@@ -19,27 +19,8 @@ def load_user(user_id):
 @login_required
 def index():
     user = current_user
-    share_form = ShareForm()
-    if request.method == "POST":
-        s_label = request.form.get('label')
-        s_content = request.form.get('content')
-        print(s_label)
-        print(s_content)
-        share = Share(label=s_label,
-                      content=s_content,
-                      writer=user)
-        try:
-            flash("发布成功")
-            db.session.add(share)
-            db.session.commit()
-            return redirect(url_for('main.index'))
-        except Exception as e:
-            print(e)
-            flash("发布失败")
-            db.session.rollback()
     return render_template('user/index.html',
                            user=user,
-                           share_form=share_form,
                            rand=random.randint(1000, 9999))
 
 
@@ -66,30 +47,27 @@ def followers(username):
     return render_template('followers.html', user=user)
 
 
-@main.route('/followed-by/<username>')
-def followed_by(username):
-    user = User.query.filter_by(username=username).first()
-    if user is None:
-        flash('Invalid user.')
-        return redirect(url_for('.index'))
-    page = request.args.get('page', 1, type=int)
-    pagination = user.followed.paginate(
-        page, per_page=current_app.config['FLASKY_FOLLOWERS_PER_PAGE'],
-        error_out=False)
-    follows = [{'user': item.followed, 'timestamp': item.timestamp}
-               for item in pagination.items]
-    return render_template('followers.html', user=user, title="Followed by",
-                           endpoint='.followed_by', pagination=pagination,
-                           follows=follows)
+# @main.route('/followed-by/<username>')
+# def followed_by(username):
+#     user = User.query.filter_by(username=username).first()
+#     if user is None:
+#         flash('Invalid user.')
+#         return redirect(url_for('.index'))
+#     page = request.args.get('page', 1, type=int)
+#     pagination = user.followed.paginate(
+#         page, per_page=current_app.config['FLASKY_FOLLOWERS_PER_PAGE'],
+#         error_out=False)
+#     follows = [{'user': item.followed, 'timestamp': item.timestamp}
+#                for item in pagination.items]
+#     return render_template('followers.html', user=user, title="Followed by",
+#                            endpoint='.followed_by', pagination=pagination,
+#                            follows=follows)
 
 
 @main.route('/user/<username>', methods=['GET', 'POST'])
 @login_required
 def user(username):
     user = User.query.filter_by(username=username).first()
-    print('------------------')
-    print(username)
-    print(user)
     return render_template('user/index.html', user=user)
 
 
@@ -136,8 +114,24 @@ def explore():
 @login_required
 def pub_share():
     user = current_user
-
-    return render_template('user/pub_share.html', user=user)
+    share_form = ShareForm()
+    print('--------------------------')
+    if request.method == "POST":
+        s_label = request.form.get('label')
+        s_content = request.form.get('content')
+        print(s_label)
+        print(s_content)
+        share = Share(label=s_label,
+                      content=s_content,
+                      writer=user)
+        try:
+            db.session.add(share)
+            db.session.commit()
+            return redirect(url_for('main.index'))
+        except Exception as e:
+            print(e)
+            db.session.rollback()
+    return render_template('user/pub_share.html', user=user,share_form=share_form)
 
 
 @main.route('/index/pub_question', methods=['GET', 'POST'])
@@ -156,12 +150,11 @@ def pub_question():
         try:
             db.session.add(question)
             db.session.commit()
-            flash("发布成功")
+            return redirect(url_for('main.index'))
         except Exception as e:
             print(e)
-            flash("发布失败")
             db.session.rollback()
-    return render_template('user/pub_Q&A.html', user=user, question_form=question_form)
+    return render_template('user/pub_question.html', user=user, question_form=question_form)
 
 
 @main.route('/index/edit_profile', methods=['GET', 'POST'])
