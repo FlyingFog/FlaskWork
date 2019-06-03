@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% extends "base.html" %}
+<!--{#{% extends "base.html" %}#}-->
 {% block page_content %}
 
 <style type="text/css">
@@ -37,7 +37,7 @@ else {
         <div class="page-header">
         <h1>title of question</h1><br>
         <p>
-            线路稳定和网络宽带保证。网吧长时间连续和公网连接，容易成为黑客攻击和利用的目标，着不仅仅会带来网络安全问题，还会使网络性能下降，带宽降低。
+            {{question.content}}
         </p><br>
         <small>public date:xxx</small>
         <small style="margin-left: 10px">view:3 times</small>
@@ -56,7 +56,7 @@ else {
             <div class="media" style="font-size: small ">
                 <div class="media-left">
                     <a href="#"><!--查看答主主页-->
-                        <img src="https://static.runoob.com/images/mix/img_avatar.png" class="media-object" style="width:50px">
+                        <img src="{{ avatars.default() }}" class="media-object" style="width:50px">
                     </a>
                 </div>
                 <div class="media-body">

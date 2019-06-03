@@ -91,6 +91,12 @@ def explore():
             shares.append(share)
     return render_template('explore/share.html', shares=shares)
 
+@main.route('/index/look_question/<qid>', methods=['GET', 'POST'])
+@login_required
+def look_question(qid):
+    question=Question.query.get(qid)
+    return render_template('explore/look_question.html', question=question)
+
 
 @main.route('/index/explore/question', methods=['GET', 'POST'])
 @login_required
@@ -103,39 +109,39 @@ def explore_question():
     return render_template('explore/Q&A.html', questions=questions)
 
 
-@main.route('/index/search/question', methods=['GET', 'POST'])
-def searchshare(type, content):
-    searchWhat = '%' + content + '%'
-
-    if type == 'Share':
+@main.route('/index/search/<search>/<category>', methods=['GET', 'POST'])
+@login_required
+def search2(search, category):
+    searchWhat = '%' + search + '%'
+    if category == "share":
         shares = Share.query.filter(Share.content.like(searchWhat)).all()
-        return render_template('/search/index.html', results=shares, content=content)
+        print(shares)
+        return render_template('search/index.html', results=shares, search=search)
 
-    if type == 'Question':
-        ques = Question.query.filter(Question.content.like(searchWhat)).all()
-        return render_template('/search/question.html', results=ques, content=content)
+    elif category == "question":
+        questions = Question.query.filter(Question.content.like(searchWhat)).all()
+        print(questions)
+        return render_template('search/question.html', results=questions, search=search)
 
-    if type == 'User':
+    elif category == "user":
         users = User.query.filter(User.username.like(searchWhat)).all()
         print(users)
-        return render_template('/search/user.html', results=users, content=content)
+        return render_template('search/user.html', results=users, search=search)
+    else:
+        print("---------search something wrong---------------")
+    return render_template('search/index.html')
 
 
 @main.route('/index/search/share', methods=['GET', 'POST'])
 @login_required
-def search():
-    print('--------------------------')
-    # request_list = []
-    # if request.method == "POST":
-    #     share = request.form.get('share')
-    #     request_list.append(share)
-    #     question = request.form.get('question')
-    #     request_list.append(question)
-    #     user = request.form.get('user')
-    #     request_list.append(user)
-    #     print(request_list)
-    #     return render_template('search/index.html')
-    return render_template('search/404.html')
+def search1():
+    if request.method == "POST":
+        search = request.form.get('search')
+        searchWhat = '%' + search + '%'
+        shares = Share.query.filter(Share.content.like(searchWhat)).all()
+        print(url_for('main.search2',search="search", category="share"))
+        return render_template('search/index.html', results=shares, search=search)
+    return render_template('search/index.html')
 
 
 @main.route('/index/pub_share', methods=['GET', 'POST'])

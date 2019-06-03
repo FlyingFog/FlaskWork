@@ -35,13 +35,11 @@
                 <li><a href="{{url_for('main.pub_share')}}">Share</a></li>
                 <li><a href="{{url_for('main.pub_question')}}">Q&A</a></li>
             </ul>
-            <form method="post" class="navbar-form navbar-left" style="margin-top: 7px"><!--这里加上action="{#{{url_for('search') }}#}"-->
+            <form method="post" action="{{url_for('main.search1')}}" class="navbar-form navbar-left" style="margin-top: 7px"><!--这里加上action="{#{{url_for('search') }}#}"-->
                 <div class="form-group">
                     <input type="text" name="share" class="form-control" placeholder="Share,questions or user">
                 </div>
-                <a href="{{url_for('main.search')}}">
                     <button type="submit" class="btn btn-default" style="margin-top: 0px">Search</button>
-                </a>
             </form>
             <p class="navbar-text" style="font-size: 18px;margin-top: 8px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -51,7 +49,7 @@
             <a href="#" style="margin-top: 12px"><img src="{{ avatars.robohash(current_user.id) }}" style="width: 35px"> </a>
             <!--href为进入home,即user.index页面；src为get_avatar(user=current_user)-->
             &nbsp;&nbsp;
-                <a href="{url_for('auth.logout')}}"><span class="glyphicon glyphicon-off" style="margin-top: 12px"></span></a>
+            <a href="{{url_for('auth.logout')}}"><span class="glyphicon glyphicon-off" style="margin-top: 12px"></span></a>
         </div>
     </div>
 </nav>
