@@ -46,7 +46,7 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{current_user.username}}</p><!--user.name-->
-            <a href="#" style="margin-top: 12px"><img src="{{ avatars.default() }}" style="width: 35px"> </a><!--href为进入home,即user.index页面；src为get_avatar(user=current_user)-->
+            <a href="#" style="margin-top: 12px"><img src="{{ avatars.robohash(current_user.id) }}" style="width: 35px"> </a>
         </div>
     </div>
 </nav>
@@ -59,8 +59,8 @@
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu">
-                <li><a href="#" style="font-family: 'Segoe UI'">Share</a></li><!--href为explore,index-->
-                <li><a href="#" style="font-family: 'Segoe UI'">Q&A</a></li><!--href为explore.Q&A-->
+                <li><a href="{{url_for('main.explore')}}" style="font-family: 'Segoe UI'">Share</a></li><!--href为explore,index-->
+                <li><a href="{{url_for('main.explore_question')}}" style="font-family: 'Segoe UI'">Q&A</a></li><!--href为explore.Q&A-->
             </ul>
         </div>
     </div>

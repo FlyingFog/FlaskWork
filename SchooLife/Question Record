@@ -7,12 +7,10 @@ template 中 重定向或路由url 应该与所用路由（蓝图）一致
 <<<<<<< HEAD
 **
 TODO:
-    edit profile内:
-        2.图片上传问题
-        bugs:
-        1.ProfileForm都没有设置validators=[DataRequired()]，但是edit profile必须全部把信息填完才能提交
-    main views.py
-        路由的render_template 的参数 user=user 应该都可以删掉了(并不能，谨慎删)
+    注意：
+        share_images里都是.png
+    share和question删除的按钮
+
 =======
 
 **

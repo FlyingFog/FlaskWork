@@ -78,13 +78,7 @@ def signup():
         try:
             db.session.add(user)
             db.session.commit()
-            # 存图片
-            if form.image.data:
-                basedir = os.path.abspath(os.path.dirname(__file__))
-                f = request.files['image']
-                postfix = str(f.filename).split('.')[1]
-                image_name = str(user.id) + '.' + postfix
-                f.save(os.path.join(os.path.join(basedir, '..', 'static','images'), image_name))
+
             # 发邮件
             # send_email(user.email, user=user, token=user.generate_confirmation_token())
             flash("注册成功")

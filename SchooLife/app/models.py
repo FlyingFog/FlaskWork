@@ -128,6 +128,10 @@ class Share(db.Model):
     pubtime = db.Column(db.DATETIME, default=datetime.utcnow)
     newnum = db.Column(db.INT, default=0)
     star = db.Column(db.INT, default=0)
+    comments = db.relationship('Comment', backref='share')
+
+    def comments_number(self):
+        return len(self.comments)
 
     def to_dict(self):
         return {c.name: getattr(self, c.name, None)

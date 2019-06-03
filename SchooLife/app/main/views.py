@@ -1,3 +1,5 @@
+import os
+
 from flask import render_template, redirect, url_for, request, flash, current_app
 from . import main
 from .. import db
@@ -29,6 +31,7 @@ def index():
 def follow(username):
     user = User.query.filter_by(username=username).first()
     current_user.follow(user)
+    db.session.commit()
     return render_template('user/index.html', user=user)
 
 
@@ -37,31 +40,8 @@ def follow(username):
 def unfollow(username):
     user = User.query.filter_by(username=username).first()
     current_user.unfollow(user)
+    db.session.commit()
     return render_template('user/index.html', user=user)
-
-
-@main.route('/followers/<username>')
-def followers(username):
-    user = User.query.filter_by(username=username).first()
-    current_user.follow(user)
-    return render_template('followers.html', user=user)
-
-
-# @main.route('/followed-by/<username>')
-# def followed_by(username):
-#     user = User.query.filter_by(username=username).first()
-#     if user is None:
-#         flash('Invalid user.')
-#         return redirect(url_for('.index'))
-#     page = request.args.get('page', 1, type=int)
-#     pagination = user.followed.paginate(
-#         page, per_page=current_app.config['FLASKY_FOLLOWERS_PER_PAGE'],
-#         error_out=False)
-#     follows = [{'user': item.followed, 'timestamp': item.timestamp}
-#                for item in pagination.items]
-#     return render_template('followers.html', user=user, title="Followed by",
-#                            endpoint='.followed_by', pagination=pagination,
-#                            follows=follows)
 
 
 @main.route('/user/<username>', methods=['GET', 'POST'])
@@ -103,11 +83,26 @@ def follower(username):
     return render_template('user/follower.html', user=user, followers=followers)
 
 
-@main.route('/index/explore', methods=['GET', 'POST'])
+@main.route('/index/explore/share', methods=['GET', 'POST'])
 @login_required
 def explore():
-    user = current_user
-    return render_template('explore/index.html', user=user)
+    users=current_user.followed
+    shares=[]
+    for user in users:
+        for share in user.followed.shares:
+            shares.append(share)
+    return render_template('explore/share.html', shares=shares)
+
+
+@main.route('/index/explore/question', methods=['GET', 'POST'])
+@login_required
+def explore_question():
+    users=current_user.followed
+    questions=[]
+    for user in users:
+        for question in user.followed.questions:
+            questions.append(question)
+    return render_template('explore/Q&A.html', questions=questions)
 
 
 @main.route('/index/pub_share', methods=['GET', 'POST'])
@@ -127,11 +122,19 @@ def pub_share():
         try:
             db.session.add(share)
             db.session.commit()
+            # 存图片
+            if share_form.image.data:
+                basedir = os.path.abspath(os.path.dirname(__file__))
+                f = request.files['image']
+                postfix = str(f.filename).split('.')[1]
+                image_name = str(share.sid) + '.' + postfix
+                f.save(os.path.join(os.path.join(basedir, '..', 'static', 'share_images'), image_name))
+
             return redirect(url_for('main.index'))
         except Exception as e:
             print(e)
             db.session.rollback()
-    return render_template('user/pub_share.html', user=user,share_form=share_form)
+    return render_template('user/pub_share.html', user=user, share_form=share_form)
 
 
 @main.route('/index/pub_question', methods=['GET', 'POST'])
@@ -162,48 +165,44 @@ def pub_question():
 def edit_profile():
     user = current_user
     profile_form = ProfileForm()
-    if profile_form.validate_on_submit():
-        email = request.form.get('email')
+    if request.method == "POST":
         name = request.form.get('name')
         password = request.form.get('password')
-        realname = request.form.get('realname')
+        password2 = request.form.get('password2')
         gender = request.form.get('gender')
         age = request.form.get('age')
         school = request.form.get('school')
         selfinfo = request.form.get('selfinfo')
-        test_user = User.query.filter_by(email=email).first()
-        if test_user:
-            flash('邮箱已被注册')
+        print(name, password, gender, age, school, selfinfo)
+
+        if password != password2:
+            flash('两次输入密码不一致')
         else:
-            # 丑陋的代码
-            send_email(email, name)
-            if email:
-                user.email = profile_form.email.data
-            if name:
-                user.name = profile_form.name.data
-            if password:
-                user.password = profile_form.password.data
-            if realname:
-                user.realname = profile_form.realname.data
-            if gender:
-                user.gender = profile_form.gender.data
-            if age:
-                user.age = profile_form.age.data
-            if school:
-                user.school = profile_form.school.data
-            if selfinfo:
-                user.selfinfo = profile_form.selfinfo.data
-            try:
-                db.session.commit()
-                flash("修改成功")
-            except Exception as e:
-                print(e)
-                flash("发布失败")
-                db.session.rollback()
-    else:
-        if request.method == "POST":
-            flash("两次输入密码不一致 或 填写不合法")
-    return render_template('user/edit_profile.html', user=user, form=profile_form)
+            test_user_name = User.query.filter_by(username=name).first()
+            if test_user_name:
+                flash('用户名已被使用')
+            else:
+                if name:
+                    user.username = name
+                if password:
+                    user.password = password
+                if gender:
+                    user.gender = gender
+                if age:
+                    user.age = age
+                if school:
+                    user.school = school
+                if selfinfo:
+                    user.selfinfo = selfinfo
+                try:
+                    db.session.commit()
+                    # flash("修改成功")
+                    return redirect(url_for('main.index'))
+                except Exception as e:
+                    print(e)
+                    flash("发布失败")
+                    db.session.rollback()
+    return render_template('user/edit_profile.html', form=profile_form)
 
 
 @main.route('/index/delete_share/<uid>/<sid>', methods=['GET', 'POST'])

@@ -6,6 +6,7 @@ from wtforms.validators import DataRequired, EqualTo
 class ShareForm(FlaskForm):
     label=StringField('分享标题：')
     content = StringField('分享内容：')
+    image = FileField('image file:')
     submit = SubmitField('发表')
 
 

@@ -3,14 +3,14 @@
 {% include 'explore/_header.html' %}
 <div class="row">
     {% if questions %}
-            {% for question in questions %}
-                <div class="col-md-8 col-md-offset-2" style="margin-top: 30px">
-                    {{ question_card(question) }}
-                </div>
-            {% endfor %}
-        {% else %}
-            <div class="tip text-center">
-                <h3 style="font-family: 'Segoe UI'">No Q&A.</h3>
+        {% for question in questions %}
+            <div class="col-md-8 col-md-offset-2" style="margin-top: 30px">
+                {{ question_card(question) }}
             </div>
-        {% endif %}
+        {% endfor %}
+    {% else %}
+        <div class="tip text-center">
+            <h3 style="font-family: 'Segoe UI'">No Q&A.</h3>
+        </div>
+    {% endif %}
 </div>
