@@ -21,9 +21,7 @@ def load_user(user_id):
 @login_required
 def index():
     user = current_user
-    return render_template('user/index.html',
-                           user=user,
-                           rand=random.randint(1000, 9999))
+    return render_template('user/index.html', user=user)
 
 
 @main.route('/follow/<username>')
@@ -86,8 +84,8 @@ def follower(username):
 @main.route('/index/explore/share', methods=['GET', 'POST'])
 @login_required
 def explore():
-    users=current_user.followed
-    shares=[]
+    users = current_user.followed
+    shares = []
     for user in users:
         for share in user.followed.shares:
             shares.append(share)
@@ -97,12 +95,47 @@ def explore():
 @main.route('/index/explore/question', methods=['GET', 'POST'])
 @login_required
 def explore_question():
-    users=current_user.followed
-    questions=[]
+    users = current_user.followed
+    questions = []
     for user in users:
         for question in user.followed.questions:
             questions.append(question)
     return render_template('explore/Q&A.html', questions=questions)
+
+
+@main.route('/index/search/question', methods=['GET', 'POST'])
+def searchshare(type, content):
+    searchWhat = '%' + content + '%'
+
+    if type == 'Share':
+        shares = Share.query.filter(Share.content.like(searchWhat)).all()
+        return render_template('/search/index.html', results=shares, content=content)
+
+    if type == 'Question':
+        ques = Question.query.filter(Question.content.like(searchWhat)).all()
+        return render_template('/search/question.html', results=ques, content=content)
+
+    if type == 'User':
+        users = User.query.filter(User.username.like(searchWhat)).all()
+        print(users)
+        return render_template('/search/user.html', results=users, content=content)
+
+
+@main.route('/index/search/share', methods=['GET', 'POST'])
+@login_required
+def search():
+    print('--------------------------')
+    # request_list = []
+    # if request.method == "POST":
+    #     share = request.form.get('share')
+    #     request_list.append(share)
+    #     question = request.form.get('question')
+    #     request_list.append(question)
+    #     user = request.form.get('user')
+    #     request_list.append(user)
+    #     print(request_list)
+    #     return render_template('search/index.html')
+    return render_template('search/404.html')
 
 
 @main.route('/index/pub_share', methods=['GET', 'POST'])
@@ -110,7 +143,6 @@ def explore_question():
 def pub_share():
     user = current_user
     share_form = ShareForm()
-    print('--------------------------')
     if request.method == "POST":
         s_label = request.form.get('label')
         s_content = request.form.get('content')
