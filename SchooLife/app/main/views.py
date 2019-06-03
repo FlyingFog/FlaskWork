@@ -136,6 +136,7 @@ def explore():
 @login_required
 def pub_share():
     user = current_user
+
     return render_template('user/pub_share.html', user=user)
 
 

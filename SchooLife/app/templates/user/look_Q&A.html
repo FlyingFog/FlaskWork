@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block page_content %}
+
+<style type="text/css">
+#answerfield{
+    padding:10px;
+    border-style: none
+}
+</style>
+
+<script type="text/javascript">
+//===================点击展开关闭效果=========================
+function openShutManager(oSourceObj,oTargetObj,shutAble,oOpenTip,oShutTip){
+var sourceObj = typeof oSourceObj == "string" ? document.getElementById(oSourceObj) : oSourceObj;
+var targetObj = typeof oTargetObj == "string" ? document.getElementById(oTargetObj) : oTargetObj;
+var openTip = oOpenTip || "";
+var shutTip = oShutTip || "";
+if(targetObj.style.display!="none"){
+   if(shutAble) return;
+   targetObj.style.display="none";
+   if(openTip  &&  shutTip){
+    sourceObj.innerHTML = shutTip;
+   }
+}
+else {
+   targetObj.style.display="block";
+   if(openTip  &&  shutTip){
+    sourceObj.innerHTML = openTip;
+   }
+}
+}
+</script>
+
+    <div class="container" style="background-color: #eeeeee">
+        <div style="background-color: white;width: 900px;height: auto;margin: auto;text-align: center">
+        <div class="page-header">
+        <h1>title of question</h1><br>
+        <p>
+            线路稳定和网络宽带保证。网吧长时间连续和公网连接，容易成为黑客攻击和利用的目标，着不仅仅会带来网络安全问题，还会使网络性能下降，带宽降低。
+        </p><br>
+        <small>public date:xxx</small>
+        <small style="margin-left: 10px">view:3 times</small>
+        <small style="margin-left: 10px">shared:3 times</small>
+        <br>
+        </div>
+        <small>3 answers</small>
+        <button type="button" class="btn btn-primary" style="margin-left: 20px;margin-bottom: 10px">关注</button>
+        <button class="btn btn-primary" style="margin-left: 20px;margin-bottom: 10px" onclick="openShutManager(this,'answerfield')">写回答</button>
+        <p id="answerfield" style="display:none;">
+            <textarea class="form-control" id="deblock_udid" name="deblock_udid" rows="5" style="min-width: 90%" placeholder="your answer"></textarea>
+            <button type="submit" class="btn btn-primary" style="margin-top: 10px">OK</button>
+        </p>
+        </div>
+        <div style="margin: 10px auto;background-color: white;width: 900px;height: auto">
+            <div class="media" style="font-size: small ">
+                <div class="media-left">
+                    <a href="#"><!--查看答主主页-->
+                        <img src="https://static.runoob.com/images/mix/img_avatar.png" class="media-object" style="width:50px">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <a href="#"><h4 class="media-heading">user</h4></a>
+                        <p>个签motto</p>
+                </div>
+            </div>
+            <div style="margin-top:10px;width: 900px;height: auto">
+                <p>示例文本。示例文本。示例文本。示例文本。示例文本。示例文本。示例文本。示例文本。</p><!--回答内容-->
+            </div>
+            <div style="margin-bottom: 5px;width: 900px;height: auto;text-align: right">
+                <span><a href="#">
+                    <button type="button" class="glyphicon glyphicon-thumbs-up btn btn-default" style="margin-bottom: 10px"> 点赞</button>
+                </a></span>
+                <span><a href="#">
+                    <button type="button" class="btn btn-default" style="margin-left: 15px;margin-right: 10px;margin-bottom: 10px">分享</button></a></span>
+            </div>
+            <hr>
+        </div>
+    </div>
+{% endblock %}
+</html>

@@ -1,0 +1,30 @@
+{% extends 'search/_header.html' %}
+{% from 'macros.html' import user_card %}
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <h1 style="font-family: 'Segoe UI'">Search:&nbsp;Joyce</h1><!--把Joyce改成{# {{ s }}#}，s是用户刚刚在搜索框输入的内容-->
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <ul class="nav nav-pills nav-stacked">
+                <li role="presentation" style="font-family: 'Segoe UI'"><a href="#">Share</a></li>
+                <!--href改成url_for('search',s=s,category=share)-->
+                <li role="presentation" style="font-family: 'Segoe UI'"><a href="#">Question</a></li>
+                <!--href改成url_for('search',s=s,category=Q&A)-->
+                <li role="presentation" class="active" style="font-family: 'Segoe UI'"><a href="#">User</a></li>
+                <!--href改成url_for('search',s=s,category=user)-->
+            </ul>
+        </div>
+        <div class="col-md-10">
+            {% if results %}
+                {% for item in results %}
+                    <div class="col-md-3">
+                        {{ user_card(item) }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

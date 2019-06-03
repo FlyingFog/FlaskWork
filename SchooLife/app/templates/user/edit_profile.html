@@ -1,1 +1,106 @@
-edit profile
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>edit-frofile</title>
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap-fileinput.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="bootstrap-fileinput.js"></script>
+</head>
+
+<body>
+    <div class="container" style="background-color: #eeeeee">
+        <div class="page-header" style="margin-left:240px;border-style: hidden">
+            <h1>Edit Profile</h1>
+        </div>
+        <hr>
+        <form class="form-horizontal" role="form">
+        <fieldset>
+            <div class="form-group">
+	                <div style="position: relative;width: 100px;height:100px;
+	                    margin-top: 10px;margin-left:280px;border-radius: 50%;">
+		                <img src="https://static.runoob.com/images/mix/img_avatar.png" alt="选择并上传头像" id="avatar_img"
+			                style="width: 100px;height: 100px;left:0;top: 0;border-radius: 50%;"/>
+		                <input type="file" id="avatar_file" name="avatar_file"
+			                accept="image/jpg,image/png,image/gif"
+			                style="width: 100%;height:100%;opacity: 0;position: absolute;left:0;top: 0;"/>
+	                </div>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="nickname" class="col-sm-2 control-label">Nickname</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="nickname"
+                        placeholder="new nickname" value="sunny">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="psw" class="col-sm-2 control-label">Password</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="psw"
+                        placeholder="new password" value="123456">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="school" class="col-sm-2 control-label">School</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="school"
+                        placeholder="input school" value="SCU">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="age" class="col-sm-2 control-label">Age</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="age"
+                        placeholder="input age" value="18">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="motto" class="col-sm-2 control-label">Motto</label>
+                <div class="col-sm-3">
+                     <textarea class="form-control" id="deblock_udid" name="deblock_udid" rows="3">have a good day</textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="sex" class="col-sm-2 control-label">Sex</label>
+                <div class="col-sm-3">
+                    <select class="input-xlarge">
+                        <option>男</option>
+                        <option>女</option></select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                <a href="#"><!--返回更新后个人信息页面-->
+                    <button type="submit" class="btn btn-primary">OK</button>
+                </a>
+                <a href="#" style="margin-left: 150px"><!--返回原始个人信息页面-->
+                    <button class="btn btn-primary">BACK</button>
+                </a>
+                </div>
+            </div>
+        </fieldset>
+        </form>
+    </div>
+</body>
+
+<script>
+    // 头像预览
+    $("#avatar_file").change(function () {
+        // 获取上传文件对象
+        var file = $(this)[0].files[0];
+        // 读取文件URL
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        // 阅读文件完成后触发的事件
+        reader.onload = function () {
+            // 读取的URL结果：this.result
+            $("#avatar_img").attr("src", this.result);
+        }
+    });
+</script>
+
+</html>

@@ -1,1 +1,51 @@
-publish question here
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>add-question</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+</head>
+
+<body>
+<div class="container" style="background-color: #eeeeee;text-align: center">
+    <div class="page-header" style="margin: 1px auto;text-align: center;background-color: white;width: 800px;height: auto">
+        <h1>Add Question</h1>
+    </div>
+    <textarea class="form-control" style="font-size:x-large;background-color: white;border-style: none;width: 800px;height: auto;margin: 10px auto"
+              id="share-content" rows="2" placeholder="请输入问题标题"></textarea>
+    <textarea class="form-control" style="background-color: white;border-style: none;width: 800px;height: auto;margin: 10px auto"
+              id="share-content" rows="10" placeholder="请输入问题描述"></textarea>
+        <div style="margin: auto;width: 800px;height: auto;text-align: right">
+        <a href="#">
+            <span><button type="submit" class="btn btn-primary" style="margin: 10px auto">OK</button></span>
+        </a>
+        <a href="#">
+            <span><button type="submit" class="btn btn-primary" style="margin: 10px 20px">Back</button></span>
+        </a>
+        </div>
+</div>
+</body>
+
+<script>
+    // 头像预览
+    $("#avatar_file").change(function () {
+        // 获取上传文件对象
+        var file = $(this)[0].files[0];
+        // 读取文件URL
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        // 阅读文件完成后触发的事件
+        reader.onload = function () {
+            // 读取的URL结果：this.result
+            $("#avatar_img").attr("src", this.result);
+        }
+    });
+</script>
+
+</html>
