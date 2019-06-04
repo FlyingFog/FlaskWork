@@ -3,7 +3,7 @@ import os
 from flask import render_template, redirect, url_for, request, flash, current_app
 from . import main
 from .. import db
-from ..models import User, Share, Question
+from ..models import User, Share, Question, Answer, Comment
 import random
 from app import login_manager
 from app.main.forms import ShareForm, QuestionForm, ProfileForm
@@ -91,12 +91,6 @@ def explore():
             shares.append(share)
     return render_template('explore/share.html', shares=shares)
 
-@main.route('/index/look_question/<qid>', methods=['GET', 'POST'])
-@login_required
-def look_question(qid):
-    question=Question.query.get(qid)
-    return render_template('explore/look_question.html', question=question)
-
 
 @main.route('/index/explore/question', methods=['GET', 'POST'])
 @login_required
@@ -109,10 +103,29 @@ def explore_question():
     return render_template('explore/Q&A.html', questions=questions)
 
 
+@main.route('/index/look_question/<qid>', methods=['GET', 'POST'])
+@login_required
+def look_question(qid):
+    question = Question.query.get(qid)
+    return render_template('explore/look_question.html', question=question)
+
+
+@main.route('/index/show_share/<sid>', methods=['GET', 'POST'])
+@login_required
+def show_share(sid):
+    share = Share.query.get(sid)
+    return render_template('explore/show_share.html', share=share)
+
+
 @main.route('/index/search/<search>/<category>', methods=['GET', 'POST'])
 @login_required
 def search2(search, category):
     searchWhat = '%' + search + '%'
+    print(search)
+    print(type(search))
+    print(category)
+    print(type(category))
+    print('---------------')
     if category == "share":
         shares = Share.query.filter(Share.content.like(searchWhat)).all()
         print(shares)
@@ -137,9 +150,12 @@ def search2(search, category):
 def search1():
     if request.method == "POST":
         search = request.form.get('search')
+        print('----search1----')
+        print(search)
+        print(type(search))
         searchWhat = '%' + search + '%'
         shares = Share.query.filter(Share.content.like(searchWhat)).all()
-        print(url_for('main.search2',search="search", category="share"))
+        # print(url_for('main.search2',search="search", category="share"))
         return render_template('search/index.html', results=shares, search=search)
     return render_template('search/index.html')
 
@@ -152,22 +168,20 @@ def pub_share():
     if request.method == "POST":
         s_label = request.form.get('label')
         s_content = request.form.get('content')
-        print(s_label)
-        print(s_content)
         share = Share(label=s_label,
                       content=s_content,
                       writer=user)
         try:
-            db.session.add(share)
-            db.session.commit()
-            # 存图片
-            if share_form.image.data:
-                basedir = os.path.abspath(os.path.dirname(__file__))
-                f = request.files['image']
-                postfix = str(f.filename).split('.')[1]
-                image_name = str(share.sid) + '.' + postfix
-                f.save(os.path.join(os.path.join(basedir, '..', 'static', 'share_images'), image_name))
-
+            if s_content != "":
+                db.session.add(share)
+                db.session.commit()
+                # 存图片
+                if share_form.image.data:
+                    basedir = os.path.abspath(os.path.dirname(__file__))
+                    f = request.files['image']
+                    postfix = str(f.filename).split('.')[1]
+                    image_name = str(share.sid) + '.' + postfix
+                    f.save(os.path.join(os.path.join(basedir, '..', 'static', 'share_images'), image_name))
             return redirect(url_for('main.index'))
         except Exception as e:
             print(e)
@@ -183,14 +197,15 @@ def pub_question():
     if request.method == "POST":
         q_label = request.form.get('label')
         q_content = request.form.get('content')
-        print(q_label)
-        print(q_content)
+        # print(q_label)
+        # print(q_content)
         question = Question(label=q_label,
                             content=q_content,
                             writer=user)
         try:
-            db.session.add(question)
-            db.session.commit()
+            if q_label != "":
+                db.session.add(question)
+                db.session.commit()
             return redirect(url_for('main.index'))
         except Exception as e:
             print(e)
@@ -211,7 +226,7 @@ def edit_profile():
         age = request.form.get('age')
         school = request.form.get('school')
         selfinfo = request.form.get('selfinfo')
-        print(name, password, gender, age, school, selfinfo)
+        # print(name, password, gender, age, school, selfinfo)
 
         if password != password2:
             flash('两次输入密码不一致')
@@ -243,20 +258,12 @@ def edit_profile():
     return render_template('user/edit_profile.html', form=profile_form)
 
 
-@main.route('/index/delete_share/<uid>/<sid>', methods=['GET', 'POST'])
-def delete_share(uid, sid):
+@main.route('/index/delete_share/<sid>', methods=['GET', 'POST'])
+def delete_share(sid):
     share = Share.query.get(sid)
-    if share:
-        try:
-            db.session.delete(share)
-            db.session.commit()
-        except Exception as e:
-            print(e)
-            flash('删除分享出错')
-            db.session.rollback()
-    else:
-        flash('没有这条分享')
-    return redirect(url_for('main.index', uid=uid))
+    db.session.delete(share)
+    db.session.commit()
+    return redirect(url_for('main.index'))
 
 
 @main.route('/index/delete_question/<uid>/<qid>', methods=['GET', 'POST'])
@@ -273,3 +280,61 @@ def delete_question(uid, qid):
     else:
         flash('没有这条问题')
     return redirect(url_for('main.index', uid=uid))
+
+
+@main.route('/index/explore/like_share/<sid>', methods=['GET', 'POST'])
+@login_required
+def like_share(sid):
+    share = Share.query.get(sid)
+    share.like += 1
+    db.session.commit()
+    return render_template('explore/show_share.html', share=share)
+
+
+@main.route('/index/explore/like_comment/<cid>', methods=['GET', 'POST'])
+@login_required
+def like_comment(cid):
+    comment = Share.query.get(cid)
+    comment.like += 1
+    db.session.commit()
+    return render_template('explore/show_share.html', share=comment.share)
+
+
+@main.route('/index/explore/like_answer/<aid>', methods=['GET', 'POST'])
+@login_required
+def like_answer(aid):
+    answer = Answer.query.get(aid)
+    answer.like += 1
+    db.session.commit()
+    return render_template('explore/look_question.html', question=answer.question)
+
+
+@main.route('/index/explore/pub_comment/<sid>', methods=['GET', 'POST'])
+@login_required
+def pub_comment(sid):
+    share = Share.query.get(sid)
+    if request.method == "POST":
+        comment_content = request.form.get('content')
+        comment = Comment(content=comment_content, share=share,writer=current_user)
+        db.session.add(comment)
+        db.session.commit()
+    return render_template('explore/show_share.html', share=share)
+
+
+
+@main.route('/index/explore/question/pub_answer/<qid>', methods=['GET', 'POST'])
+@login_required
+def pub_answer(qid):
+    user = current_user
+    question = Question.query.get(qid)
+    if request.method == "POST":
+        answer_content = request.form.get('content')
+        answer = Answer(content=answer_content, writer=user, question=question)
+        try:
+            db.session.add(answer)
+            db.session.commit()
+            return render_template('explore/look_question.html', question=question)
+        except Exception as e:
+            print(e)
+            db.session.rollback()
+    return render_template('explore/look_question.html', question=question)

@@ -1,24 +1,8 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>add-share</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="bootstrap-fileinput.css">
-    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
-            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-            crossorigin="anonymous"></script>
-    <script src="bootstrap-fileinput.js"></script>
-</head>
-
-<body>
+{% extends 'search/_header.html' %}
+{% block content %}
 <div class="container" style="background-color: #eeeeee">
-    <div class="page-header" style="margin: 1px auto;text-align: center;background-color: white;width: 800px;height: auto">
-        <h1>Add Share</h1>
+    <div class="page-header" style="margin: 30px auto;text-align: center;background-color: #eeeeee;width: 800px;height: auto">
+        <h1>Publish Share</h1>
     </div>
 
     <form method='post' enctype="multipart/form-data">
@@ -26,7 +10,7 @@
             <div class="media" style="background-color: #eeeeee">
                 <div class="media-left">
                     <div style="position: relative;width: 200px;height:200px;left:50px;top: 0;
-                        margin-right:50px;border-style: none;background-color: white">
+                        margin-right:30px;border-style: none;background-color: white">
                     <img src="{{url_for('static',filename='images/default_share.jpg')}}" alt="选择图片" id="avatar_img"
                          style="width: 200px;height: 200px;left:0;top: 0;"/>
                     <input type="file" id="image" name="image" accept="image/jpg,image/png,image/gif"
@@ -41,14 +25,13 @@
             </div>
         </div>
         {{ share_form.csrf_token() }}
-        <textarea id="content" name="content" class="form-control" style="background-color: white;border-style: none;width: 800px;height: auto;margin: 10px auto"
+        <textarea id="content" name="content" class="form-control" style="font-size:x-large;background-color: white;border-style: none;width: 800px;height: 100px;margin: 10px auto"
                   rows="15" placeholder="请输入分享内容"></textarea>
 
     <div style="margin: auto;width: 800px;height: auto;text-align: right">
         <a href="{{url_for('main.pub_share')}}">
             <span><button id="submit" name="submit" type="submit" class="btn btn-primary" style="margin: 10px auto">Submit</button></span>
         </a>
-
         <a href="{{url_for('main.index')}}">
             <span><button class="btn btn-primary" style="margin: 10px 20px">Back</button></span>
         </a>
@@ -56,22 +39,4 @@
     </form>
 
 </div>
-</body>
-
-<script>
-    // 图片预览
-    $("#avatar_file").change(function () {
-        // 获取上传文件对象
-        var file = $(this)[0].files[0];
-        // 读取文件URL
-        var reader = new FileReader();
-        reader.readAsDataURL(file);
-        // 阅读文件完成后触发的事件
-        reader.onload = function () {
-            // 读取的URL结果：this.result
-            $("#avatar_img").attr("src", this.result);
-        }
-    });
-</script>
-
-</html>
+{% endblock %}

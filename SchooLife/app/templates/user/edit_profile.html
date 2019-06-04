@@ -27,8 +27,14 @@
             </div>
             <br>
             {% for message in get_flashed_messages() %}
-                {{message}}<br>
+            <h4 style="color:#DD2222">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {{message}}</h4>
             {%endfor%}
+
+
 
             <div class="form-group">
                 <label for="name" class="col-sm-2 control-label">Name</label>

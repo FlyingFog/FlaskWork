@@ -9,8 +9,11 @@ template 中 重定向或路由url 应该与所用路由（蓝图）一致
 TODO:
     注意：
         share_images里都是.png
-    share和question删除的按钮
-
+    需要加:
+        share和question删除的按钮
+        注册加一个返回button
+        如果share content为空，flash信息，
+        如果question label为空，flash信息
 =======
 
 **

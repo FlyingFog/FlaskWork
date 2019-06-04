@@ -23,16 +23,18 @@ if __name__ == '__main__':
         u4.follow(u1)
         u1.follow(u2)
 
+        s1 = models.Share(label='u1-s1', content='u1-s1-content', writer=u1)
+        s2 = models.Share(label='u1-s2', content='u1-s2-content', writer=u1)
+        s3 = models.Share(label='u2-s1', content='u2-s1-content', writer=u2)
+        s4 = models.Share(label='u2-s2', content='u2-s2-content', writer=u2)
 
-        s1 = models.Share(label='u1-s1', writer=u1)
-        s2 = models.Share(label='u1-s2', writer=u1)
-        s3 = models.Share(label='u2-s1', writer=u2)
-        s4 = models.Share(label='u2-s2', writer=u2)
+        q1 = models.Question(label='u1-q1', content='u1-q1-content', writer=u1)
+        q2 = models.Question(label='u1-q2', content='u1-q1-content', writer=u1)
+        q3 = models.Question(label='u2-q1', content='u2-q1-content', writer=u2)
+        q4 = models.Question(label='u2-q2', content='u2-q1-content', writer=u2)
 
-        q1 = models.Question(label='u1-q1', writer=u1)
-        q2 = models.Question(label='u1-q2', writer=u1)
-        q3 = models.Question(label='u2-q1', writer=u2)
-        q4 = models.Question(label='u2-q2', writer=u2)
+        a1 = models.Answer(content="a1-content", writer=u2, question=q1)
+        a2 = models.Answer(content="a2-content", writer=u2, question=q1)
 
         db.session.add_all([u1, u2, s1, s2, s3, s4, q1, q2, q3, q4])
         db.session.commit()

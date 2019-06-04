@@ -57,11 +57,13 @@
     <div class="col-md-3">
         <img class="img-rounded" src="{{ avatars.robohash(user.id) }}" style="width: 230px;height: 230px;margin-left: 80px">
     </div>
-    <div class="col-md-7" style="margin-left: 30px">
+    <div class="col-md-7" style="margin-left: 30px;">
         <h1>{{user.username}}</h1>
-        <p style="font-family: 'Segoe UI'"><span class="glyphicon glyphicon-education"></span>&nbsp;&nbsp;{{current_user.school}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <span class="glyphicon glyphicon-calendar"></span>&nbsp;&nbsp;{{current_user.regtime}} </p>
+        <p style="font-family: 'Segoe UI';"><span class="glyphicon glyphicon-education"></span>&nbsp;&nbsp;{{current_user.school}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="glyphicon glyphicon-calendar"></span>&nbsp;&nbsp;{{current_user.regtime.strftime("%Y-%m-%d %H:%M:%S")}}</p>
         <!-- user.school   moment(user.member_since).format('LL') -->
+        <p style="font-family: 'Segoe UI';"><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;{{current_user.email}}</p>
+        <p style="font-family: 'Segoe UI';"><span class="glyphicon glyphicon-paperclip"></span>&nbsp;&nbsp;{{current_user.selfinfo}} </p>
         <br><br><br><br>
         <div class="col-md-offset-11">
             {{ follow_area(user, current_user) }}
@@ -73,5 +75,6 @@
         </div>
     </div>
 </div>
+{% block content %}{% endblock %}
 </body>
 </html>

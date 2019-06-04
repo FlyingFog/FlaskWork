@@ -3,11 +3,13 @@
 {% macro share_card(share) %}
     <div class="share_card">
         <div class="thumbnail" style="width: 300px;height:280px">
-            <img src="/static/share_images/{{share.sid}}.png" style="width: 290px;height: 270px">
+            <a href="{{url_for('main.show_share',sid=share.sid)}}">
+                <img src="/static/share_images/{{share.sid}}.png" style="width: 290px;height: 270px">
+            </a>
             <!--img改成的src改成分享的图片路径,href加上show_share-->
             <div class="caption">
-                <p><span class="glyphicon glyphicon-star">  {{ share.star }}</span>&nbsp;<!--点赞数-->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <span class="glyphicon glyphicon-comment">  {{ share.comments_number() }}</span>&nbsp;<!--评论数--></p>
+                <p><span class="glyphicon glyphicon-star">  {{ share.like }}</span>&nbsp;<!--点赞数-->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="glyphicon glyphicon-comment">  {{ share.comments|length }}</span>&nbsp;<!--评论数--></p>
             </div>
         </div>
     </div>

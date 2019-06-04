@@ -43,6 +43,8 @@ class User(UserMixin, db.Model):
 
     shares = db.relationship('Share', backref='writer')
     questions = db.relationship('Question', backref='writer')
+    comments = db.relationship('Comment', backref='writer')
+    answers = db.relationship('Answer', backref='writer')
 
     followed = db.relationship('Follow',
                                foreign_keys=[Follow.follower_id],
@@ -127,11 +129,8 @@ class Share(db.Model):
     content = db.Column(db.TEXT(65535))
     pubtime = db.Column(db.DATETIME, default=datetime.utcnow)
     newnum = db.Column(db.INT, default=0)
-    star = db.Column(db.INT, default=0)
+    like = db.Column(db.INT, default=0)
     comments = db.relationship('Comment', backref='share')
-
-    def comments_number(self):
-        return len(self.comments)
 
     def to_dict(self):
         return {c.name: getattr(self, c.name, None)
@@ -156,11 +155,12 @@ class Question(db.Model):
     __tablename__ = 'question'
 
     qid = db.Column(db.INT, primary_key=True)
-
+    writeruid = db.Column(db.INT, db.ForeignKey('users.id'))
     label = db.Column(db.VARCHAR(255))
     content = db.Column(db.TEXT(65535))
-    writeruid = db.Column(db.INT, db.ForeignKey('users.id'))
     newnum = db.Column(db.INT)
+    answers = db.relationship('Answer', backref='question')
+    pubtime = db.Column(db.DATETIME, default=datetime.utcnow)
 
     def to_dict(self):
         return {c.name: getattr(self, c.name, None)
@@ -171,8 +171,10 @@ class Answer(db.Model):
     __tablename__ = 'answer'
     aid = db.Column(db.INT, primary_key=True)
     qid = db.Column(db.INT, db.ForeignKey('question.qid'))
+    writeruid = db.Column(db.INT, db.ForeignKey('users.id'))
     content = db.Column(db.TEXT(65535))
     pubtime = db.Column(db.DATETIME, default=datetime.utcnow)
+    like = db.Column(db.INT, default=0)
 
 
 def creatDB():
