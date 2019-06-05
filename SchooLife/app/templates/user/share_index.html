@@ -1,0 +1,27 @@
+{% from 'macros.html' import share_card %}
+
+{% block content %}
+    {% include 'user/_header.html' %}
+    <div class="user-nav" style="margin-left: 80px;margin-top: 30px;margin-right: 80px">
+        <ul class="nav nav-tabs" style="font-family: 'Segoe UI'">
+            <li role="presentation" class="active"><a href="{{url_for('main.shares',username=user.username)}}">Shares</a></li><!--改成显示分享页（index）的函数-->
+            <li role="presentation"><a href="{{url_for('main.QandAs',username=user.username)}}">Q&As</a></li><!--改成显示问题页的函数-->
+            <li role="presentation"><a href="{{url_for('main.following',username=user.username)}}">Following</a></li><!--改成显示关注的人的函数-->
+            <li role="presentation"><a href="{{url_for('main.follower',username=user.username)}}">Follower</a></li><!--改成显示关注者的函数-->
+        </ul>
+    </div>
+    <div class="row" style="margin-top: 30px;margin-left: 54px">
+        {% if shares %}
+            {% for share in shares %}
+                <div class="col-md-4" style="margin-top: 28px">
+                    {{ share_card(share) }}
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="tip text-center">
+                <h3 style="font-family: 'Segoe UI'">No photos.</h3>
+            </div>
+        {% endif %}
+    </div>
+
+{% endblock %}

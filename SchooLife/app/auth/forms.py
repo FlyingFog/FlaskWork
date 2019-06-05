@@ -16,7 +16,7 @@ class SignupForm(FlaskForm):
     username = StringField('name:', validators=[DataRequired()])
     password = PasswordField('password:', validators=[DataRequired()])
     password2 = PasswordField('confirm password:', validators=[DataRequired(), EqualTo('password', "密码不一样")])
-    # image = FileField(u'Image File', [validators.regexp(u'^[^/\\]\.jpg$')])
+    #image = FileField(u'Image File', [validators.regexp(u'^[^/\\]\.jpg$')])
     submit = SubmitField('Submit')
 
     def validate_email(self, field):

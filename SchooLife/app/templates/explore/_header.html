@@ -45,7 +45,7 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{current_user.username}}</p><!--user.name-->
+                {{current_user.username}}</p><!--user.name-->
             <a href="#" style="margin-top: 12px"><img src="{{ avatars.robohash(current_user.id) }}" style="width: 35px"> </a>
             <a href="{{url_for('auth.logout')}}"><span class="glyphicon glyphicon-off" style="margin-top: 12px"></span></a>
         </div>
@@ -56,7 +56,7 @@
         <div class="btn-group" role="group" style="margin-left: 30px;font-family: 'Segoe UI'">
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">
-                Dropdown
+                选择类型
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu">

@@ -125,7 +125,7 @@ class Share(db.Model):
     sid = db.Column(db.INT, primary_key=True)
     writeruid = db.Column(db.INT, db.ForeignKey('users.id'))
     label = db.Column(db.VARCHAR(255))
-    image = db.Column(db.VARCHAR(255))
+    image = db.Column(db.VARCHAR(255),default="/static/share_images/1.png")
     content = db.Column(db.TEXT(65535))
     pubtime = db.Column(db.DATETIME, default=datetime.utcnow)
     newnum = db.Column(db.INT, default=0)

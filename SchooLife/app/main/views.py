@@ -54,7 +54,7 @@ def user(username):
 def shares(username):
     user = User.query.filter_by(username=username).first()
     shares = user.shares
-    return render_template('user/index.html', user=user, shares=shares)
+    return render_template('user/share_index.html', user=user, shares=shares)
 
 
 @main.route('/index/<username>/QandAs', methods=['GET', 'POST'])
@@ -173,15 +173,16 @@ def pub_share():
                       writer=user)
         try:
             if s_content != "":
-                db.session.add(share)
-                db.session.commit()
                 # 存图片
                 if share_form.image.data:
+                    share.image = str("/static/share_images/"+str(share.sid)+".png")
                     basedir = os.path.abspath(os.path.dirname(__file__))
                     f = request.files['image']
                     postfix = str(f.filename).split('.')[1]
                     image_name = str(share.sid) + '.' + postfix
                     f.save(os.path.join(os.path.join(basedir, '..', 'static', 'share_images'), image_name))
+            db.session.add(share)
+            db.session.commit()
             return redirect(url_for('main.index'))
         except Exception as e:
             print(e)

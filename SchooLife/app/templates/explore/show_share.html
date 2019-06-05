@@ -5,14 +5,14 @@
         <div class="container" style="margin-top: 20px">
             <div class="col-md-8">
                 <div class="share_image">
-                    <img class="img-rounded" src="/static/share_images/{{share.sid}}.png"
+                    <img class="img-rounded" src="{{share.image}}"
                          style="width: 700px">  <!--src改成url_for("get_share_image,share=share")-->
                 </div>
                 <br>
                 <div class="image-foot">
                     <p class="text-muted" style="font-family: 'Segoe UI';"><span
                             class="glyphicon glyphicon-time"></span>
-                        &nbsp;Upload at </p><!--{#  moment(share.pubtime).format('LL') #}-->
+                        &nbsp;Upload at  {{share.pubtime.strftime("%Y-%m-%d %H:%M:%S")}}</p><!--{#  moment(share.pubtime).format('LL') #}-->
                 </div>
                 <div class="comments">
                     <h2 style="font-family: 'Segoe UI'">{{ share.comments|length }} Comments</h2><!--改成{# {{ share.comments|length }} #}-->
@@ -76,13 +76,18 @@
                             <!--src是get_avatar(share.writer),href是进入share.writer的home-->
                         </div>
                         <div class="media-body">
-                            <h3 class="media-heading" style="font-family: 'Segoe UI'">{{current_user.username}}</h3>
+                            <h3 class="media-heading" style="font-family: 'Segoe UI'">{{share.writer.username}}</h3>
                             {# follow_area(share.writer) #}
                         </div>
                     </div>
                 </div>
                 <div class="well">
                     <h3 style="font-family: 'Segoe UI'">{{share.label}}</h3>
+                    <h6>
+                        <br/>
+                        {{share.content}}
+
+                    </h6>
                     {% if current_user.is_authenticated and current_user == share.writer %}
                     <a href="{{url_for('main.delete_share',sid=share.sid)}}">
                         <button type="submit" class="btn btn-primary btn-sm" style="font-family: 'Segoe UI'">

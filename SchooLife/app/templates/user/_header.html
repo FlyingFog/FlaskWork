@@ -46,7 +46,7 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{current_user.username}}</p><!--user.name-->
+                {{current_user.username}}</p><!--user.name-->
             <a href="#" style="margin-top: 12px"><img src="{{ avatars.robohash(current_user.id) }}" style="width: 35px"> </a>
             <!--href为进入home,即user.index页面；src为get_avatar(user=current_user)-->
             <a href="{{url_for('auth.logout')}}"><span class="glyphicon glyphicon-off" style="margin-top: 12px"></span></a>

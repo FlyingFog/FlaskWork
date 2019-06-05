@@ -13,7 +13,7 @@
     <collation id="5" parent="1" name="RTRIM"/>
     <table id="6" parent="2" name="answer"/>
     <table id="7" parent="2" name="comment"/>
-    <table id="8" parent="2" name="followinfo"/>
+    <table id="8" parent="2" name="follows"/>
     <table id="9" parent="2" name="question"/>
     <table id="10" parent="2" name="share"/>
     <table id="11" parent="2" name="sqlite_master">
@@ -31,7 +31,7 @@
     </column>
     <column id="15" parent="6" name="content">
       <Position>3</Position>
-      <DataType>TEXT(65536)|0s</DataType>
+      <DataType>TEXT(65535)|0s</DataType>
     </column>
     <column id="16" parent="6" name="pubtime">
       <Position>4</Position>
@@ -61,7 +61,7 @@
     </column>
     <column id="22" parent="7" name="content">
       <Position>4</Position>
-      <DataType>TEXT(65536)|0s</DataType>
+      <DataType>TEXT(65535)|0s</DataType>
     </column>
     <column id="23" parent="7" name="pubtime">
       <Position>5</Position>
@@ -81,40 +81,40 @@
       <RefTableName>users</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="27" parent="8" name="followuid">
+    <column id="27" parent="8" name="follower_id">
       <Position>1</Position>
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="28" parent="8" name="followeruid">
+    <column id="28" parent="8" name="followed_id">
       <Position>2</Position>
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="29" parent="8" name="followtime">
+    <column id="29" parent="8" name="timestamp">
       <Position>3</Position>
       <DataType>DATETIME|0s</DataType>
     </column>
-    <index id="30" parent="8" name="sqlite_autoindex_followinfo_1">
+    <index id="30" parent="8" name="sqlite_autoindex_follows_1">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>followuid
-followeruid</ColNames>
+      <ColNames>follower_id
+followed_id</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="31" parent="8">
-      <ColNames>followuid
-followeruid</ColNames>
+      <ColNames>follower_id
+followed_id</ColNames>
       <Primary>1</Primary>
-      <UnderlyingIndexName>sqlite_autoindex_followinfo_1</UnderlyingIndexName>
+      <UnderlyingIndexName>sqlite_autoindex_follows_1</UnderlyingIndexName>
     </key>
     <foreign-key id="32" parent="8">
-      <ColNames>followuid</ColNames>
+      <ColNames>follower_id</ColNames>
       <RefTableName>users</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
     <foreign-key id="33" parent="8">
-      <ColNames>followeruid</ColNames>
+      <ColNames>followed_id</ColNames>
       <RefTableName>users</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
@@ -125,11 +125,11 @@ followeruid</ColNames>
     </column>
     <column id="35" parent="9" name="label">
       <Position>2</Position>
-      <DataType>VARCHAR(256)|0s</DataType>
+      <DataType>VARCHAR(255)|0s</DataType>
     </column>
     <column id="36" parent="9" name="content">
       <Position>3</Position>
-      <DataType>TEXT(65536)|0s</DataType>
+      <DataType>TEXT(65535)|0s</DataType>
     </column>
     <column id="37" parent="9" name="writeruid">
       <Position>4</Position>
@@ -159,15 +159,15 @@ followeruid</ColNames>
     </column>
     <column id="43" parent="10" name="label">
       <Position>3</Position>
-      <DataType>VARCHAR(256)|0s</DataType>
+      <DataType>VARCHAR(255)|0s</DataType>
     </column>
     <column id="44" parent="10" name="image">
       <Position>4</Position>
-      <DataType>VARCHAR(256)|0s</DataType>
+      <DataType>VARCHAR(255)|0s</DataType>
     </column>
     <column id="45" parent="10" name="content">
       <Position>5</Position>
-      <DataType>TEXT(65536)|0s</DataType>
+      <DataType>TEXT(65535)|0s</DataType>
     </column>
     <column id="46" parent="10" name="pubtime">
       <Position>6</Position>
@@ -217,7 +217,7 @@ followeruid</ColNames>
     </column>
     <column id="57" parent="12" name="email">
       <Position>2</Position>
-      <DataType>VARCHAR(256)|0s</DataType>
+      <DataType>VARCHAR(255)|0s</DataType>
     </column>
     <column id="58" parent="12" name="password">
       <Position>3</Position>
@@ -229,55 +229,55 @@ followeruid</ColNames>
     </column>
     <column id="60" parent="12" name="username">
       <Position>5</Position>
-      <DataType>VARCHAR(256)|0s</DataType>
+      <DataType>VARCHAR(255)|0s</DataType>
     </column>
     <column id="61" parent="12" name="realname">
       <Position>6</Position>
-      <DataType>VARCHAR(256)|0s</DataType>
+      <DataType>VARCHAR(255)|0s</DataType>
     </column>
-    <column id="62" parent="12" name="has_img">
+    <column id="62" parent="12" name="portrait">
       <Position>7</Position>
+      <DataType>VARCHAR(255)|0s</DataType>
+    </column>
+    <column id="63" parent="12" name="permit">
+      <Position>8</Position>
       <DataType>INTEGER|0s</DataType>
     </column>
-    <column id="63" parent="12" name="portrait">
-      <Position>8</Position>
-      <DataType>VARCHAR(256)|0s</DataType>
-    </column>
-    <column id="64" parent="12" name="permit">
+    <column id="64" parent="12" name="gender">
       <Position>9</Position>
       <DataType>INTEGER|0s</DataType>
     </column>
-    <column id="65" parent="12" name="gender">
+    <column id="65" parent="12" name="age">
       <Position>10</Position>
       <DataType>INTEGER|0s</DataType>
     </column>
-    <column id="66" parent="12" name="age">
+    <column id="66" parent="12" name="school">
       <Position>11</Position>
-      <DataType>INTEGER|0s</DataType>
+      <DataType>VARCHAR(255)|0s</DataType>
     </column>
-    <column id="67" parent="12" name="school">
+    <column id="67" parent="12" name="selfinfo">
       <Position>12</Position>
-      <DataType>VARCHAR(256)|0s</DataType>
+      <DataType>TEXT(65535)|0s</DataType>
     </column>
-    <column id="68" parent="12" name="selfinfo">
+    <column id="68" parent="12" name="regtime">
       <Position>13</Position>
-      <DataType>TEXT(65536)|0s</DataType>
-    </column>
-    <column id="69" parent="12" name="regtime">
-      <Position>14</Position>
       <DataType>DATETIME|0s</DataType>
     </column>
-    <column id="70" parent="12" name="totshare">
+    <column id="69" parent="12" name="totshare">
+      <Position>14</Position>
+      <DataType>INTEGER|0s</DataType>
+    </column>
+    <column id="70" parent="12" name="totques">
       <Position>15</Position>
       <DataType>INTEGER|0s</DataType>
     </column>
-    <column id="71" parent="12" name="totques">
+    <column id="71" parent="12" name="totans">
       <Position>16</Position>
       <DataType>INTEGER|0s</DataType>
     </column>
-    <column id="72" parent="12" name="totans">
+    <column id="72" parent="12" name="has_img">
       <Position>17</Position>
-      <DataType>INTEGER|0s</DataType>
+      <DataType>BOOLEAN|0s</DataType>
     </column>
     <key id="73" parent="12">
       <ColNames>id</ColNames>
@@ -285,6 +285,9 @@ followeruid</ColNames>
     </key>
     <check id="74" parent="12">
       <Predicate>confirmed IN (0, 1)</Predicate>
+    </check>
+    <check id="75" parent="12">
+      <Predicate>has_img IN (0, 1)</Predicate>
     </check>
   </database-model>
 </dataSource>

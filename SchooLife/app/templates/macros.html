@@ -4,7 +4,7 @@
     <div class="share_card">
         <div class="thumbnail" style="width: 300px;height:280px">
             <a href="{{url_for('main.show_share',sid=share.sid)}}">
-                <img src="/static/share_images/{{share.sid}}.png" style="width: 290px;height: 270px">
+                <img src="{{share.image}}" style="width: 290px;height: 270px">
             </a>
             <!--img改成的src改成分享的图片路径,href加上show_share-->
             <div class="caption">

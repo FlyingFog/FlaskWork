@@ -40,7 +40,7 @@
                 <label for="name" class="col-sm-2 control-label">Name</label>
                 <div class="col-sm-3">
                     <input type="text" class="form-control" id="name" name="name"
-                        placeholder="new name">
+                        placeholder="{{current_user.username}}">
                 </div>
             </div>
             <div class="form-group">
@@ -61,14 +61,14 @@
                 <label for="school" class="col-sm-2 control-label">School</label>
                 <div class="col-sm-3">
                     <input type="text" class="form-control" id="school" name="school"
-                        placeholder="input school">
+                        placeholder="{{current_user.school}}">
                 </div>
             </div>
             <div class="form-group">
                 <label for="age" class="col-sm-2 control-label">Age</label>
                 <div class="col-sm-3">
                     <input type="text" class="form-control" id="age" name="age"
-                        placeholder="input age">
+                        placeholder="{{current_user.age}}">
                 </div>
             </div>
             <div class="form-group">
@@ -90,13 +90,11 @@
                 <div class="col-sm-offset-2 col-sm-10">
                 <a href="{{url_for('main.edit_profile')}}"><!--返回更新后个人信息页面-->
                     <button type="submit" class="btn btn-primary">OK</button>
-                </a>
-                <a href="{{url_for('main.index')}}" style="margin-left: 150px"><!--返回原始个人信息页面-->
-                    <button class="btn btn-primary">BACK</button>
+                </a><!--返回原始个人信息页面-->
+                    <button class="btn btn-primary" formaction="{{url_for('main.index')}}">BACK</button>
                 </a>
                 </div>
             </div>
-
         </fieldset>
         </form>
     </div>

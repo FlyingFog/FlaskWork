@@ -9,13 +9,18 @@ from flask_login import logout_user, login_required, login_user, current_user
 import os
 
 
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+
 @auth.route('/confirm/<token>')
 @login_required
 def confirm(token):
     if current_user.confirmed:
         return redirect(url_for('main.index'))
     if current_user.confirm(token):
-        flash('You have confirmed your account.Please log in.Thanks!')
+        flash('You have confirmed your account.\nPlease log in.Thanks!')
         return redirect(url_for('auth.login'))
     else:
         flash('The confirmation link is invalid or has expired.')
@@ -38,11 +43,6 @@ def unconfirmed():
     if current_user.confirmed:
         return redirect(url_for('main.index'))
     return render_template('auth/unconfirmed.html')
-
-
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
 
 
 @auth.route('/', methods=['GET', 'POST'])
@@ -73,14 +73,11 @@ def signup():
         password = form.password.data
         user = User(email=email, username=name)
         user.generate_password(password)
-        if form.image.data:
-            user.has_img = 1
         try:
             db.session.add(user)
             db.session.commit()
-
             # 发邮件
-            # send_email(user.email, user=user, token=user.generate_confirmation_token())
+            send_email(user.email, user=user, token=user.generate_confirmation_token())
             flash("注册成功")
             return redirect(url_for('auth.login'))
         except Exception as e:
@@ -89,7 +86,7 @@ def signup():
             db.session.rollback()
     else:
         if request.method == "POST":
-            flash("注册失败validate出错")
+            flash("注册失败")
     return render_template('auth/signup.html', form=form)
 
 

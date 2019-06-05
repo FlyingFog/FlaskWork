@@ -11,21 +11,19 @@
                 <form method='post'>
                     {{ form.csrf_token() }}
                     <p style="font-family: 'Segoe UI';font-size: 20px">{{ form.email.label }}</p>
-                    <p style="font-family: 'Segoe UI'">{{ form.email() }}</p>
+                    <p style="font-family: 'Segoe UI'">{{ form.email() }}{{form.email.errors[0]}}</p>
                     <p style="font-family: 'Segoe UI';font-size: 20px">{{ form.username.label }}</p>
-                    <p style="font-family: 'Segoe UI'">{{ form.username() }}</p>
+                    <p style="font-family: 'Segoe UI'">{{ form.username() }}{{form.username.errors[0]}}</p>
                     <p style="font-family: 'Segoe UI';font-size: 20px">{{ form.password.label }}</p>
                     <p style="font-family: 'Segoe UI'">{{ form.password() }}</p>
                     <p style="font-family: 'Segoe UI';font-size: 20px">{{ form.password2.label }}</p>
                     <p style="font-family: 'Segoe UI'">{{ form.password2() }}</p>
                     <p style="font-family: 'Segoe UI'">{{ form.submit() }}</p>
                 </form>
+            {% for message in get_flashed_messages() %}
+            {{message}}<br>
+            {%endfor%}
             </div>
         </div>
     </div>
-
-{% for message in get_flashed_messages() %}
-{{message}}<br>
-{%endfor%}
-
 {% endblock %}
