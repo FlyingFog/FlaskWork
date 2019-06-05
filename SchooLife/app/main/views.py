@@ -172,17 +172,19 @@ def pub_share():
                       content=s_content,
                       writer=user)
         try:
+            db.session.add(share)
+            db.session.commit()
             if s_content != "":
                 # 存图片
                 if share_form.image.data:
+                    print(share.sid)
                     share.image = str("/static/share_images/"+str(share.sid)+".png")
+                    db.session.commit()
                     basedir = os.path.abspath(os.path.dirname(__file__))
                     f = request.files['image']
                     postfix = str(f.filename).split('.')[1]
                     image_name = str(share.sid) + '.' + postfix
                     f.save(os.path.join(os.path.join(basedir, '..', 'static', 'share_images'), image_name))
-            db.session.add(share)
-            db.session.commit()
             return redirect(url_for('main.index'))
         except Exception as e:
             print(e)
