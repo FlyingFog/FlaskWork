@@ -15,7 +15,7 @@
                         &nbsp;Upload at  {{share.pubtime.strftime("%Y-%m-%d %H:%M:%S")}}</p><!--{#  moment(share.pubtime).format('LL') #}-->
                 </div>
                 <div class="comments">
-                    <h2 style="font-family: 'Segoe UI'">{{ share.comments|length }} Comments</h2><!--改成{# {{ share.comments|length }} #}-->
+                    <h2 style="font-family: 'Segoe UI'">{{ share.comments|length }} Comments &nbsp;&nbsp;&nbsp;&nbsp;{{share.like}} Likes</h2><!--改成{# {{ share.comments|length }} #}-->
                     <hr>
                     {% if share.comments %}<!--return render_template('show_share.html',comments=comments)-->
                         {% for comment in share.comments %}
@@ -27,7 +27,7 @@
                                 </div>
                                 <div class="media-body" style="font-family: 'Segoe UI'">
                                     <div class="media-heading">
-                                        <h4 style="font-family: 'Segoe UI';margin-top: 0px">{{current_user.username}}&nbsp;&nbsp;
+                                        <h4 style="font-family: 'Segoe UI';margin-top: 0px">{{comment.writer.username}}&nbsp;&nbsp;
                                             <!--{# comment.writer #}-->
                                             {% if comment.writer==share.writer %}
                                             <span class="badge">Author</span>&nbsp;&nbsp;

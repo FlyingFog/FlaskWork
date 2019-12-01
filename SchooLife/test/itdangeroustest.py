@@ -1,7 +1,7 @@
 from itsdangerous import TimedJSONWebSignatureSerializer as Ser
 
 s = Ser("aaaa" ,expires_in=3600)
-token = s.dumps(1)
+token = s.dumps({'uid':1})
 print(token)
 token1 = str(token)
 token1 = token1[2:-1]

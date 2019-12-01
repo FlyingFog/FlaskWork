@@ -28,4 +28,4 @@ class Config:
     UPLOAD_FOLDER = os.path.join(os.path.join(basedir, '..','static'))
     # ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
-
+    FLASK_ADMIN_SWATCH = 'cerulean'
