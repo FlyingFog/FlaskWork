@@ -28,7 +28,6 @@ class User(UserMixin, db.Model):
     confirmed = db.Column(db.BOOLEAN, default=False)
     username = db.Column(db.VARCHAR(255))
     realname = db.Column(db.VARCHAR(255))
-    has_img = db.Column(db.INT, default=0)
     portrait = db.Column(db.VARCHAR(255))
     permit = db.Column(db.INT, default=1)
     gender = db.Column(db.INT)
@@ -40,6 +39,7 @@ class User(UserMixin, db.Model):
     totques = db.Column(db.INT, default=0)
     totans = db.Column(db.INT, default=0)
     has_img = db.Column(db.BOOLEAN, default=0)
+    admin = db.Column(db.BOOLEAN,default=0)
 
     shares = db.relationship('Share', backref='writer')
     questions = db.relationship('Question', backref='writer')

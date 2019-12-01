@@ -53,6 +53,8 @@ def login():
         user = User.query.filter_by(email=form.email.data).first()
         if not user:
             flash('用户不存在')
+        elif user.permit != 1:
+            flash('用户已被封禁')
         else:
             if user.verify_password(password):
                 login_user(user, form.remember_me.data)

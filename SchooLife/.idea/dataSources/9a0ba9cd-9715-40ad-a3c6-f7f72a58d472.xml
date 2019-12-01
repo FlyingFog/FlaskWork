@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="flask">
-  <database-model serializer="dbm" dbms="SQLITE" family-id="SQLITE" format-version="4.14">
+  <database-model serializer="dbm" dbms="SQLITE" family-id="SQLITE" format-version="4.15">
     <root id="1">
       <ServerVersion>3.25.1</ServerVersion>
     </root>
@@ -296,14 +296,19 @@ followed_id</ColNames>
       <Position>17</Position>
       <DataType>BOOLEAN|0s</DataType>
     </column>
-    <key id="77" parent="12">
+    <column id="77" parent="12" name="admin">
+      <Position>18</Position>
+      <DataType>BOOLEAN|0s</DataType>
+      <DefaultExpression>0</DefaultExpression>
+    </column>
+    <key id="78" parent="12">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <check id="78" parent="12">
+    <check id="79" parent="12">
       <Predicate>confirmed IN (0, 1)</Predicate>
     </check>
-    <check id="79" parent="12">
+    <check id="80" parent="12">
       <Predicate>has_img IN (0, 1)</Predicate>
     </check>
   </database-model>
