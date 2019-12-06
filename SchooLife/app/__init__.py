@@ -33,6 +33,7 @@ def create_app():
     mail.init_app(app)
     login_manager.init_app(app)
     avatars.init_app(app)
+
     from .admin import admin
     admin.init_app(app)
 
