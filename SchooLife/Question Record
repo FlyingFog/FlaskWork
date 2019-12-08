@@ -25,3 +25,9 @@ name -> username
 **
 change <id> -> current user
 >>>>>>> Hsc
+
+
+**
+{% if current_user.admin==True %}
+<li><a href="{{url_for('/admin')}}">Admin</a></li>
+% endif %}

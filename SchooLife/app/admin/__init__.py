@@ -9,7 +9,7 @@ admin = Admin(name='内容管理', template_mode='bootstrap3')
 
 class UserModelView(ModelView):
     def is_accessible(self):
-        return current_user.is_authenticated
+        return current_user.is_authenticated and current_user.admin is True
 
     page_size = 50
 

@@ -39,7 +39,7 @@ class User(UserMixin, db.Model):
     totques = db.Column(db.INT, default=0)
     totans = db.Column(db.INT, default=0)
     has_img = db.Column(db.BOOLEAN, default=0)
-    admin = db.Column(db.BOOLEAN,default=0)
+    admin = db.Column(db.BOOLEAN,default=False)
 
     shares = db.relationship('Share', backref='writer')
     questions = db.relationship('Question', backref='writer')

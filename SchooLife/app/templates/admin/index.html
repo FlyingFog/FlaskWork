@@ -1,9 +1,11 @@
-{% if current_user.is_authenticated and current_user.admin==1 %}
+{% if current_user.is_authenticated and current_user.admin==True %}
 {% extends 'admin/master.html' %}
 
 {% block body %}
   <p>Hello Admin</p>
+<p>欢迎来到管理界面</p>
 {% endblock %}
 {%else%}
 <h1>You cant access this page</h1>
+<p>{{current_user.admin}}</p>>
 {%endif%}
