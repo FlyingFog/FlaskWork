@@ -54,7 +54,7 @@ def login():
         if not user:
             flash('用户不存在')
         elif user.permit != 1:
-            flash('用户已被封禁')
+            flash('用户已被封禁，如有疑问请联系管理员')
         else:
             if user.verify_password(password):
                 login_user(user, form.remember_me.data)
