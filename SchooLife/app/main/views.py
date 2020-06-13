@@ -1,6 +1,5 @@
 import os
-
-from flask import render_template, redirect, url_for, request, flash, current_app
+from flask import render_template, redirect, url_for, request, flash, current_app, make_response
 from . import main
 from .. import db
 from ..models import User, Share, Question, Answer, Comment
